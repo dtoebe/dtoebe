@@ -1,0 +1,131 @@
++++
+Categories = ["qemu"]
+Description = ""
+Tags = ["qemu", "kvm", "virtualbox", "vmdk", "qcow2"]
+date = "2016-05-15T01:43:50-07:00"
+title = "Convert VMDK to qcow2"
+draft = true
+
++++
+
+
+# Convert VMDK to qcow2
+
+This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.
+
+### Some Background
+
+VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.
+
+About 6 months ago I switched to using qemu/KVM, first with [Gnome-Boxes][gnome-boxes], then [Virt-Manager][vm-manager]. While Gnome-Boxes has a really nice interface, Virt-Manager allows for more detailed configuration of your virtual machine.  So for a while I stuck with Virt-Manager.
+
+All that time I prefered to use command-line tools over GUI tools for just about everything I do.  I also hted the overhead another GUI tool creates, especially since running a vm is so heavy anyways.
+
+I really don't manage virtual-machines on a day to day basis, so I never really rememeber every step on what to do.  This post is to not only help you learn how to convert VMDK to qcow2, but give me a reference to look back on.
+
+### Getting Started
+
+I personally am running [Arch Linux][arch], but qemu/KVM can be installed on any modern Linux distro.  One reason I love Arch is the [Arch wiki][awiki].  In my opionin (and many others), there is no better resource for information on Linux, and Linux operating systems.
+
+To install qemu/KVM on Arch Linux go to the [qemu in the wiki][qemuwiki].  There you will see the instructions on what you need to install. To start install:
+
+```
+# pacman -S qemu
+```
+
+__I would like to point out that when I refrence a shell command, like the one above.  I'll use "#" at the beginning to refrence a "root" command. This means you will need to be the root user or if you have "sudo", you can prepend the command with sudo.  Also you may see me use "$", this will mean you can run the command as your user.__
+
+Once I install qemu I add my user to the "libvirt", and "kvm" groups
+
+```
+# gpasswd -a <your User Name> libvirt
+
+# gpasswd -a <your User Name> kvm
+```
+
+__Replace <your User Name> with your actual user name.__
+
+You will need to log out and log back in.  __Or you could run the following commands__
+
+```
+$ newgrp libvirt
+
+$ newgrp kvm
+```
+
+__Note: This only works for the current instance of your user.  This means if you switch users or close your terminal it will revert back.  To perminatly change your inclusion into the groups you will need to log out and back in__
+
+### Getting the VirtualBox images
+
+When building websites, you always want to confirm that all aspects of your site will work on all major browsers.  This includes Google Chrome, FireFox, and Internet Explorer/Edge.  While the frst 2 are easily installed on Linux, IE/Edge are only available on Windows.  But Microsoft has made VirtualBox images availale to test multiple versions of IE and Edge on Linux. Yes I said Microsoft, now pick your jaw off of the floor.
+
+Now open your favorite browser and go to the [MS developer site][MS-VBOX], and download the IE/Edge version of your choice.  For the perpouses of this tutorial I downloaded the IE11 on Win81.
+
+These are LARGE downloads, this one was 5.3GiB.  It took about 30mmin to download.
+
+Once downloaded go to the directory you downloaded it in (most likely ~/Downloads).  Now they are downloaded in .zip format so run:
+
+```
+$ unzip IE11.Win8.1.For.Windows.VirtualBox.zip
+```
+
+This may take a couple minutes because of how large the file zise is.
+
+Once unzipped you will see a new file in your directory: IE11 - Win8.1.ova.  .ova files are just achive files meant to bundle the vmdk file and an ovf file.
+
+__ovf files are XML template files VirtualBox uses to easily transfer vm settings__
+
+to un-archive the ova file run:
+
+```
+$ tar xvf IE11\ -\ Win8.1.ova
+```
+
+__The forward slashes in the above command are space escapes, so your shell knows there is a space in the filename__
+
+Now you will see 2 new files in your directory: IE11 - Win8.1-disk1.vmdk, and IE11 - Win8.1.ovf. Finally we found our vmdk file
+
+### Converting VMDK to qcow2
+
+Since I don't know of a way to run vmdk files on qemu we need to convirt it. Good thing there is a built in conversion tool.
+
+```
+$ qemu-img convert -f vmdk -O qcow2 IE11\ -\ Win8.1-disk1.vmdk IE11-Win8.1.qcow2
+```
+
+Let's break that down:
+
+* qemu-img - is the built-in qemu image manipulation tool
+* convert - tells qemu-image that you want to conver one image file, such as .img, or in this case .vmdk files
+* -f vmdk (optional) - This is an optional command (u could leave it out) qemu can auto-detect.  This tells qemu what type of file you are converting from.
+* -O qcow2 (Uppercase letter O) - This tells qemu what type of file you will convert to.
+* IE11\ -\ Win8.1.vmdk - Is the file you are converting from.
+* IE11-Win8.1.qcow2 (Can be any name you want it) - Is the output file your are converting to.
+
+And that's it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert...
+
+### Running your new qcow2 image
+
+To run your new qcow2 image just run:
+
+```
+$ qemu-system-x86_64 -m 4G -smp 2 --enable-kvm IE11-Win8.1.qcow2
+```
+
+Let's break that down:
+
+* qemu-system-x86_64 - This command launches quemu in x64bit mode (requires x64bit processor).
+* -m 4G - allocates 4 GB of ram to the virtual machine.
+* -smp 2 (optional) - Suggests to qemu to use the number refrenced of cores of your CPU to the virtual machine. I say suggests, because you can put 8 on a 4 core machine, and qemu will run, but could lock up your system. it is optional and leaving it out will make the vm run under 1 CPU core.
+* --enable-kvm (optional) - Enables KVM on your vm to help with preformance.
+* IE-Win8.1.qcow2 - is the path to the image you want to run.
+
+[gnome-boxes]: https://wiki.gnome.org/action/show/Apps/Boxes?action=show&redirect=Boxes
+[vm-manager]: https://virt-manager.org/
+[arch]: https://www.archlinux.org/
+[awiki]: https://wiki.archlinux.org/
+[qemuwiki]: https://wiki.archlinux.org/index.php/QEMU
+[MS-VBOX]: https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/linux/
+
+
+

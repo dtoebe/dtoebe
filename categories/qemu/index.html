@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qemu &middot; dtoebe.com</title>
+
+    <meta name="description" content="Just the ramblings of a passionate programmer and Linux lover">
+
+    <meta name="generator" content="Hugo 0.15" />
+    <meta name="twitter:card" content="summary">
+    
+    <meta name="twitter:title" content="Qemu &middot; dtoebe.com">
+    <meta name="twitter:description" content="Just the ramblings of a passionate programmer and Linux lover">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Qemu &middot; dtoebe.com">
+    <meta property="og:description" content="Just the ramblings of a passionate programmer and Linux lover">
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Oxygen:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+    <!--<![endif]-->
+
+    <link rel="stylesheet" href="http://www.dtoebe.com/css/all.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/rss+xml" title="dtoebe.com" href="http://www.dtoebe.com/index.xml" />
+</head>
+<body>
+
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+    <div class="header">
+        <hgroup>
+            <h1 class="brand-title"><a href="http://www.dtoebe.com">dtoebe.com</a></h1>
+            <h2 class="brand-tagline"> Just the ramblings of a passionate programmer and Linux lover </h2>
+        </hgroup>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="https://twitter.com/dtoebe"><i class="fa fa-twitter"></i> Twitter</a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="https://github.com/dtoebe "><i class="fa fa-github-alt"></i> github</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="http://www.dtoebe.com/index.xml"><i class="fa fa-rss"></i> rss</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            
+            <div class="posts">
+                
+                <h1 class="content-subhead">15 May 2016, 01:43</h1>
+                <section class="post">
+                    <header class="post-header">
+
+                        <a href="http://www.dtoebe.com/post/convert_vmdk_to_qcow2/" class="post-title">Convert VMDK to qcow2</a>
+
+                        <p class="post-meta">
+                            
+                            
+                                under 
+                                
+                                <a class="post-category post-category-qemu" href="http://www.dtoebe.com/categories/qemu">qemu</a>
+                            
+                        </p>
+                    </header>
+
+                    <div class="post-description">
+                        
+
+<h1 id="convert-vmdk-to-qcow2:f1a3a9d61180f243fd47a09ec04d7573">Convert VMDK to qcow2</h1>
+
+<p>This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.</p>
+
+<h3 id="some-background:f1a3a9d61180f243fd47a09ec04d7573">Some Background</h3>
+
+<p>VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.</p>
+
+<p>About 6 months ago I switched to using qemu/KVM, first with <a href="https://wiki.gnome.org/action/show/Apps/Boxes?action=show&amp;redirect=Boxes">Gnome-Boxes</a>, then <a href="https://virt-manager.org/">Virt-Manager</a>. While Gnome-Boxes has a really nice interface, Virt-Manager allows for more detailed configuration of your virtual machine.  So for a while I stuck with Virt-Manager.</p>
+
+<p>All that time I prefered to use command-line tools over GUI tools for just about everything I do.  I also hated the overhead another GUI tool creates, especially since running a vm is so heavy anyways.</p>
+
+<p>I really don&rsquo;t manage virtual-machines on a day to day basis, so I never really rememeber every step on what to do.  This post is to not only help you learn how to convert VMDK to qcow2, but give me a reference to look back on.</p>
+
+<h3 id="getting-started:f1a3a9d61180f243fd47a09ec04d7573">Getting Started</h3>
+
+<p>I personally am running <a href="https://www.archlinux.org/">Arch Linux</a>, but qemu/KVM can be installed on any modern Linux distro.  One reason I love Arch is the <a href="https://wiki.archlinux.org/">Arch wiki</a>.  In my opionin (and many others), there is no better resource for information on Linux, and Linux operating systems.</p>
+
+<p>To install qemu/KVM on Arch Linux go to the <a href="https://wiki.archlinux.org/index.php/QEMU">qemu in the wiki</a>.  There you will see the instructions on what you need to install. To start install:</p>
+
+<pre><code># pacman -S qemu
+</code></pre>
+
+<p><em>I would like to point out that when I refrence a shell command, like the one above.  I&rsquo;ll use &ldquo;#&rdquo; at the beginning to refrence a &ldquo;root&rdquo; command. This means you will need to be the root user or if you have &ldquo;sudo&rdquo;, you can prepend the command with sudo.  Also you may see me use &ldquo;$&rdquo;, this will mean you can run the command as your user.</em></p>
+
+<p>Once I install qemu I add my user to the &ldquo;libvirt&rdquo;, and &ldquo;kvm&rdquo; groups</p>
+
+<pre><code># gpasswd -a &lt;your User Name&gt; libvirt
+
+# gpasswd -a &lt;your User Name&gt; kvm
+</code></pre>
+
+<p><em>Replace <your User Name> with your actual user name.</em></p>
+
+<p>You will need to log out and log back in.  <em>Or you could run the following commands</em></p>
+
+<pre><code>$ newgrp libvirt
+
+$ newgrp kvm
+</code></pre>
+
+<p><em>Note: This only works for the current instance of your user.  This means if you switch users or close your terminal it will revert back.  To perminatly change your inclusion into the groups you will need to log out and back in</em></p>
+
+<h3 id="getting-the-virtualbox-images:f1a3a9d61180f243fd47a09ec04d7573">Getting the VirtualBox images</h3>
+
+<p>When building websites, you always want to confirm that all aspects of your site will work on all major browsers.  This includes Google Chrome, FireFox, and Internet Explorer/Edge.  While the frst 2 are easily installed on Linux, IE/Edge are only available on Windows.  But Microsoft has made VirtualBox images availale to test multiple versions of IE and Edge on Linux. Yes I said Microsoft, now pick your jaw off of the floor.</p>
+
+<p>Now open your favorite browser and go to the <a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/linux/">MS developer site</a>, and download the IE/Edge version of your choice.  For the purposes of this tutorial I downloaded the IE11 on Win81.</p>
+
+<p>These are LARGE downloads, this one was 5.3GiB.  It took about 30mmin to download.</p>
+
+<p>Once downloaded go to the directory you downloaded it in (most likely ~/Downloads).  Now they are downloaded in .zip format so run:</p>
+
+<pre><code>$ unzip IE11.Win8.1.For.Windows.VirtualBox.zip
+</code></pre>
+
+<p>This may take a couple minutes because of how large the file zise is.</p>
+
+<p>Once unzipped you will see a new file in your directory: IE11 - Win8.1.ova.  .ova files are just achive files meant to bundle the vmdk file and an ovf file.</p>
+
+<p><em>ovf files are XML template files VirtualBox uses to easily transfer vm settings</em></p>
+
+<p>to un-archive the ova file run:</p>
+
+<pre><code>$ tar xvf IE11\ -\ Win8.1.ova
+</code></pre>
+
+<p><em>The forward slashes in the above command are space escapes, so your shell knows there is a space in the filename</em></p>
+
+<p>Now you will see 2 new files in your directory: IE11 - Win8.1-disk1.vmdk, and IE11 - Win8.1.ovf. Finally we found our vmdk file</p>
+
+<h3 id="converting-vmdk-to-qcow2:f1a3a9d61180f243fd47a09ec04d7573">Converting VMDK to qcow2</h3>
+
+<p>Since I don&rsquo;t know of a way to run vmdk files on qemu we need to convert it. Good thing there is a built in conversion tool.</p>
+
+<pre><code>$ qemu-img convert -f vmdk -O qcow2 IE11\ -\ Win8.1-disk1.vmdk IE11-Win8.1.qcow2
+</code></pre>
+
+<p>Let&rsquo;s break that down:</p>
+
+<ul>
+<li>qemu-img - is the built-in qemu image manipulation tool</li>
+<li>convert - tells qemu-image that you want to convert one image file, such as .img, or in this case .vmdk files</li>
+<li>-f vmdk (optional) - This is an optional command (u could leave it out) qemu can auto-detect.  This tells qemu what type of file you are converting from.</li>
+<li>-O qcow2 (Uppercase letter O) - This tells qemu what type of file you will convert to.</li>
+<li>IE11\ -\ Win8.1.vmdk - Is the file you are converting from.</li>
+<li>IE11-Win8.1.qcow2 (Can be any name you want it) - Is the output file your are converting to.</li>
+</ul>
+
+<p>And that&rsquo;s it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert&hellip;</p>
+
+<h3 id="running-your-new-qcow2-image:f1a3a9d61180f243fd47a09ec04d7573">Running your new qcow2 image</h3>
+
+<p>To run your new qcow2 image just run:</p>
+
+<pre><code>$ qemu-system-x86_64 -m 4G -smp 2 --enable-kvm IE11-Win8.1.qcow2
+</code></pre>
+
+<p>Let&rsquo;s break that down:</p>
+
+<ul>
+<li>qemu-system-x86_64 - This command launches quemu in x64bit mode (requires x64bit processor).</li>
+<li>-m 4G - allocates 4 GB of ram to the virtual machine.</li>
+<li>-smp 2 (optional) - Suggests to qemu to use the number refrenced of cores of your CPU to the virtual machine. I say suggests, because you can put 8 on a 4 core machine, and qemu will run, but could lock up your system. It is optional and leaving it out will make the vm run under 1 CPU core.</li>
+<li>&ndash;enable-kvm (optional) - Enables KVM on your vm to help with preformance.</li>
+<li>IE-Win8.1.qcow2 - is the path to the image you want to run.</li>
+</ul>
+
+                    </div>
+                </section>
+                
+            </div>
+            
+
+            <div class="footer">
+    <div class="pure-menu pure-menu-horizontal pure-menu-open">
+        <ul>
+            <li>Powered by <a class="hugo" href="http://hugo.spf13.com/" target="_blank">hugo</a></li>
+        </ul>
+    </div>
+</div>
+<script src="http://www.dtoebe.com/js/all.min.js"></script>
+        </div>
+    </div>
+</div>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
