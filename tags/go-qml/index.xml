@@ -89,7 +89,7 @@
 &lt;p&gt;I used a couple references in figuring out how to write this program.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;First is the &lt;em&gt;blackfriday&lt;/em&gt; REAME: &lt;a href=&#34;https://github.com/russross/blackfriday&#34;&gt;https://github.com/russross/blackfriday&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;First is the &lt;em&gt;blackfriday&lt;/em&gt; README: &lt;a href=&#34;https://github.com/russross/blackfriday&#34;&gt;https://github.com/russross/blackfriday&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Next the &lt;em&gt;clipboard&lt;/em&gt; README: &lt;a href=&#34;https://github.com/atotto/clipboard&#34;&gt;https://github.com/atotto/clipboard&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;The &lt;em&gt;GO-QML&lt;/em&gt; README: &lt;a href=&#34;https://github.com/go-qml/qml&#34;&gt;https://github.com/go-qml/qml&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;The &lt;em&gt;GO-QML&lt;/em&gt; GoDoc (One of the best written GoDocs I have used): &lt;a href=&#34;https://godoc.org/gopkg.in/qml.v1&#34;&gt;https://godoc.org/gopkg.in/qml.v1&lt;/a&gt;&lt;/li&gt;
