@@ -6,8 +6,447 @@
     <description>Recent content in Posts on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 May 2016 01:43:50 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 16 May 2016 02:07:24 -0700</lastBuildDate>
     <atom:link href="http://www.dtoebe.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Write a simple Markdown editor with Go-QML</title>
+      <link>http://www.dtoebe.com/post/simple_markdown_editor_in_go-qml/</link>
+      <pubDate>Mon, 16 May 2016 02:07:24 -0700</pubDate>
+      
+      <guid>http://www.dtoebe.com/post/simple_markdown_editor_in_go-qml/</guid>
+      <description>
+
+&lt;h3 id=&#34;background:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;Golang has really become my go to language, and has replaced Python as my main scripting language.  I love how easy it is to write. I love haw fast it is to compile, and is a compiled language, so I can just distribute a single binary instead of hoping that there is a Python run-time install (I.E. small container images).  And with distributing these binaries, I can easily cross compile Golang to different architectures, and OS&amp;rsquo;s without installing a cumbersome tool-chain.&lt;/p&gt;
+
+&lt;p&gt;One big downside to the Go language is that it has very little GUI support, and really doesn&amp;rsquo;t come with default support what so ever.  Well there are a couple pretty good 3rd party GUI libs such as &lt;a href=&#34;https://mattn.github.io/go-gtk/&#34;&gt;Go-GTK&lt;/a&gt;, &lt;a href=&#34;https://github.com/andlabs/ui&#34;&gt;Go-UI&lt;/a&gt;, and finally &lt;a href=&#34;https://github.com/go-qml/qml&#34;&gt;Go-QML&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;about-qml:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;About QML&lt;/h3&gt;
+
+&lt;p&gt;I have played with QML and Qt Widgets with C++ in the past, and really enjoyed it.  QML especially is nice.  Instead of the classic XML style syntax that you find in WPF or even Qt Widgets UI files, QML uses a more JavaScript/JSON like syntax.  While I did just say JSON, it uses object like syntax instead of a string like syntax (meaning you won&amp;rsquo;t have a bunch of double quotes).&lt;/p&gt;
+
+&lt;p&gt;Also QML can embed JavaScript directly inline or in a separate .js file to manipulate actions on the UI. Love or hate JavaScript, it is the MOST used language in the world.  The great part about this implantation is that, on the newer versions of Qt/QML, it doesn&amp;rsquo;t run a whole implantation of Chromium in the background, os less overhead as compared to Electron and NW.js.&lt;/p&gt;
+
+&lt;p&gt;Combine that with the speed and power of the Go language, and you can create fast GUI applications easily for a lot of architectures and OS&amp;rsquo;s.&lt;/p&gt;
+
+&lt;h3 id=&#34;getting-started:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Getting Started&lt;/h3&gt;
+
+&lt;p&gt;To start understand I am using &lt;a href=&#34;https://www.archlinux.org&#34;&gt;Arch Linux&lt;/a&gt;, and all the packages I install through the system package manager will be for that system.  All the system packages will be for Go-QML, with the exception is for clipboard go lib, on Linux you will need either xclip or xsel.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// Ubuntu (based), Debian
+# apt-get install xclip
+
+// Cent-OS, RHEL
+# yum install xclip
+
+// Fedora
+# dnf install xclip
+
+// OpenSUSE, SEL
+# zypper in xclip
+
+// Arch Linux
+# pacman -S xclip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To use Go-QML and all the QML imports in this project, install:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pacman -S qt5-{base,declarative,quickcontrol}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;OK, so that command may look a little weird.  Using curly braces in your bash shell is a VERY powerful thing. Basically the command above is equivalent to:&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# pacman -S qt5-base qt5-declarative qt5-quickcontrol
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Also note that there is no spaces in the curly brackets, that is very important.  You can use that type of syntax when cp files or many other things&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that we have the system packages installed now we need to make sure you have the Go language installed and &lt;em&gt;$GOPATH&lt;/em&gt; set.  For more info on that go to &lt;a href=&#34;http://www.golang.org&#34;&gt;golang.org&lt;/a&gt;, for more information.&lt;/p&gt;
+
+&lt;p&gt;Now that everything is set let&amp;rsquo;s install the 3rd party Golang packages:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go get -u -v gopkg.in/qml.v1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Any errors that pop up while installing this package means you need to install more dependencies in your system.  See the Go-QML README for more info.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we will install the markdown parser:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go get -u -v github.com/russross/blackfriday
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This tutorial will use the basic settings of what you can do with &lt;em&gt;blackfriday&lt;/em&gt;.  For production use, you may want to sanitize the markdown.  All of that is covered in the &lt;em&gt;blackfriday&lt;/em&gt; README.&lt;/p&gt;
+
+&lt;p&gt;Finally we need to install the clipboard support:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go get -u -v github.com/atotto/clipboard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;references:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;References&lt;/h3&gt;
+
+&lt;p&gt;I used a couple references in figuring out how to write this program.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;First is the &lt;em&gt;blackfriday&lt;/em&gt; REAME: &lt;a href=&#34;https://github.com/russross/blackfriday&#34;&gt;https://github.com/russross/blackfriday&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Next the &lt;em&gt;clipboard&lt;/em&gt; README: &lt;a href=&#34;https://github.com/atotto/clipboard&#34;&gt;https://github.com/atotto/clipboard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;GO-QML&lt;/em&gt; README: &lt;a href=&#34;https://github.com/go-qml/qml&#34;&gt;https://github.com/go-qml/qml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;GO-QML&lt;/em&gt; GoDoc (One of the best written GoDocs I have used): &lt;a href=&#34;https://godoc.org/gopkg.in/qml.v1&#34;&gt;https://godoc.org/gopkg.in/qml.v1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Finally a simple &lt;em&gt;GO-QML&lt;/em&gt; Tutorial, which the most important part is at the bottom of the tut, and we will reference next: &lt;a href=&#34;https://golog.co/blog/article/Using_Go_with_QML_part_1&#34;&gt;https://golog.co/blog/article/Using_Go_with_QML_part_1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;golang-version-issues:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Golang version issues&lt;/h3&gt;
+
+&lt;p&gt;At the time of writing I am using the most recent version of the Go language (1.6.2).  Changes in cgo in 1.6 has made it so &lt;em&gt;GO-QML&lt;/em&gt; won&amp;rsquo;t compile when the QML code tries communicating back to Go.  The work around referenced in the the tut I referenced at the end of the last section says to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ GODEBUG=cgocheck=0 go run main.go
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So every time you run your program run it with those vars set.  &lt;em&gt;I do not recommend exporting those vars and making them global, because they may put other go programs at risk of possible security issues and errors.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You shouldn&amp;rsquo;t have this issue with Go language version =&amp;lt; 1.5.x&lt;/p&gt;
+
+&lt;h3 id=&#34;making-your-directories:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Making your directories&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s go to your &lt;em&gt;$GOPATH/src&lt;/em&gt; dir, and create your directories. &lt;em&gt;Note: I prefer to have my GUI files in their own sub-dir in the project no matter how small the project is.&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd $GOPATH/src &amp;amp;&amp;amp; mkdir -p qml-md/assets &amp;amp;&amp;amp; cd qml-md &amp;amp;&amp;amp; touch main.go assets/main.qml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will create all the needed dir tree and needed files&lt;/p&gt;
+
+&lt;p&gt;Finally we can open up your favorite text editor and write some code!&lt;/p&gt;
+
+&lt;h3 id=&#34;to-the-code:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;To the CODE&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;
+// main.go
+
+package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;os&amp;quot;
+
+    &amp;quot;github.com/atotto/clipboard&amp;quot;
+    &amp;quot;github.com/russross/blackfriday&amp;quot;
+    &amp;quot;gopkg.in/qml.v1&amp;quot;
+)
+
+func main() {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here you can see we&amp;rsquo;ve imported the 3 3rd party libs, the &lt;em&gt;os&lt;/em&gt;, and the &lt;em&gt;fmt&lt;/em&gt; libs from the &lt;em&gt;std&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now we will get the QML file to load in the go app&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
+
+...
+
+func run() error {
+    engine := qml.NewEngine() //Create the QML engine
+    engine.On(&amp;quot;quit&amp;quot;, func() { os.Exit(0) }) //If quit is called from QML the Golang program will gracefully quit
+
+    component, err := engine.LoadFile(&amp;quot;assets/main.qml&amp;quot;) //Load the QML file
+    if err != nil {
+        return err //if you cannot load the QML file return an error
+    }
+
+    win := component.CreateWindow(nil) //Create the window
+    win.Show() //Show the window
+    win.Wait() //Hold the window open
+
+    return nil //Once the window is closed return no error
+}
+
+func main() {
+    if err := qml.Run(run); err != nil { //Run the QML package
+        fmt.Fprintf(os.Stderr, &amp;quot;ERR: %v\n&amp;quot;, err) //Output the error in your system&#39;s stderr
+        os.Exit(1) //Exit with a non-zero status
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we create a run function that returns an error.  Inside the run func we create a QML engine, and Listen for a &amp;ldquo;quit&amp;rdquo; signal to gracefully quit.&lt;br /&gt; Load the QML file.  And finally create, open, and hold the QML window open.&lt;/p&gt;
+
+&lt;p&gt;In the main function we Run the run function to initiate the QML window.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;//assets/main.qml
+
+import QtQuick 2.3 //Needed to import all base QML entities
+import QtQuick.Controls 1.4 //Needed for ApplicationWindow and TextArea
+import QtQuick.Layouts 1.0 //For the RowLayout
+
+ApplicationWindow { //The base entity so we can set a toolbar later and the layout
+    width: 640 //Default width
+    height: 480 //Default height
+    color: &amp;quot;#f1f1f1&amp;quot; //Background Color
+
+    RowLayout { //To organize the TextAreas side by side
+        width: parent.width //Set the width to the same width ApplicationWindow
+        height: parent.height //Set the height to the ApplicationWindow height
+
+        TextArea { //A large text area for the markdown text
+            id: mdarea //Unique identifier for this TextArea
+            Layout.alignment: Qt.AlignCenter //Suggest to align center in the Layout
+            Layout.preferredWidth: (parent.width / 2) - 5;   // Suggest the width to be half the size of the parent RowLayout then subtract 5px for a little spacing
+            Layout.preferredHeight: parent.height - 10 //Suggest the height to be the size of the parent RowLayout then subtract 10px for spacing
+            text: &amp;quot;Markdown Text Area&amp;quot; //Set default text
+        }
+
+        TextArea { //A large text area for the rich text/HTML
+            id: rtarea
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: (parent.width / 2) - 5
+            Layout.preferredHeight: parent.height - 10
+            textFormat: TextEdit.RichText //this sets the text in this TextArea to show formatted text like HTML so it will show the HTML as if it were a webpage
+            text: &amp;quot;Rich Text / HTML Text Area&amp;quot;
+        }
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see QML is a simple markup language that makes it very fast and easy to write UIs.  We create an ApplicationWindow as our base entity, and a RowLayout to organize its children.  2 TextAreas, one for Markdown, and another for the RichText/HTML.  &lt;em&gt;The reason I say RichText/HTML will be apparent later when we we make it so you can see it a formatted text or raw HTML.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In the comments above I say &amp;ldquo;Suggest&amp;rdquo;.  I say this because when using &lt;em&gt;Layout.param&lt;/em&gt;, this says that the child of the layout should follow this command as log as it does not cause the ParentLayout to break its defined parameters.&lt;/p&gt;
+
+&lt;p&gt;Now we need to set a parameter in the QML and in Go to set the text in each TextArea.  Fist we will remove the static text in mdarea.text, and rtarea.text with a variable names to reference in to Golang code.  When I say something like mdarea.text I mean:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;We set the TextArea id in the Markdown text area as mdarea&lt;/li&gt;
+&lt;li&gt;And I use dot syntax to reference the text parameter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;//assets/main.qml
+...
+
+    TextArea {
+        id: mdarea
+        ...
+        text: mdtxt //A variable name to reference from the Golang code
+    }
+    TextArea {
+        id: rtarea
+        ...
+        text: rttxt
+    }
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can go to the Go code and create a context variable, which will be global so we access it from other parts of our code as needed. Then use the context to set vars before the window is created, to set the text on load.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.qml
+
+...
+import {
+    ...
+}
+
+var ctx qml.Context //Global var to set the qml context
+...
+
+func run() error {
+    ...
+    component, err := engine.LoadFile(&amp;quot;assets/main.qml&amp;quot;)
+	if err != nil {
+		return err
+	}
+    //Above code we have already written I just wanted to give you a point of reference
+    
+    ctx = *engine.Context() //set the context with a pointer so the data stored stays persistent for the life of the variable. In this case the lifetime of the application
+    ctx.SetVar(&amp;quot;mdtxt&amp;quot;, &amp;quot;Markdown Editor&amp;quot;) //Set the &amp;quot;mdtxt&amp;quot; property inside the QML file to the provided string
+    ctx.SetVar(&amp;quot;rttxt&amp;quot;, &amp;quot;Rich Text / HTML Editor&amp;quot;)
+    
+    ...
+}
+...
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above Go code will now set the &lt;em&gt;mdtxt&lt;/em&gt; and &lt;em&gt;rttxt&lt;/em&gt; properties in the QML UI when the app loads.  Now we need to have a mechanism to parse and sync the markdown text area with the rich text text area.  We will do this in a couple steps.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;First we will create a custom type from the Go code to import in to the QML&lt;/li&gt;
+&lt;li&gt;Then we will use a keyboard event in the &lt;em&gt;mdarea&lt;/em&gt; entity to listen for a change in the text&lt;/li&gt;
+&lt;li&gt;When the text changes in the &lt;em&gt;mdarea&lt;/em&gt; it will then send the &lt;em&gt;mdarea.text&lt;/em&gt; contents to the Go code to then parse the markdown and set the text in the rendered HTML in the &lt;em&gt;rtarea.text&lt;/em&gt; as RichText&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;First we create a global struct &lt;em&gt;HTMLText&lt;/em&gt; (&lt;em&gt;note: the fist letter is uppercase so the struct us exportable&lt;/em&gt;), that takes a qml.Object, and a string&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
+
+import {
+    ...
+}
+
+type HTMLText struct {
+    qml.Object
+    Text string
+}
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we create a method &lt;em&gt;SetHTMLText&lt;/em&gt; (&lt;em&gt;again exportable&lt;/em&gt;) to call from QML to manipulate the the data stored in &lt;em&gt;HTMLText&lt;/em&gt; and set the text in &lt;em&gt;rttext&lt;/em&gt; using the &lt;em&gt;ctx&lt;/em&gt; pointer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
+
+...
+type HTMLText struct {
+    ...
+}
+
+func (h *HTMLText) SetHTMLText(txt string) {
+    //As you can see this is a method of HTMLText that uses a pointer that we will initialize after we write this code
+    formattedTxt := blackfriday.MarkdownCommon([]byte(txt)) //blackfriday takes a byte array so we have to convert the txt string to a []byte
+    h.Text = string(formattedTxt) //Since we want to string literal in the QML we convert the formatted text back to a string and set the h.Text
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need a way to create the HTMLText object in the QML file, for this we need to register types in QML from the Go code before the engine is initiated.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
+
+...
+
+func run() error {
+    qml.RegisterTypes(&amp;quot;TextConverter&amp;quot;, 1, 0, []qml.TypeSpec{{
+    // Above creates a importable type with an array of Type (qml.Objects) specifications
+        Init: func (h *HTMLText, obj qml.Object) { // Initializes the object and creates a pointer for HTMLText that we can reference from QML in the method we just created
+            h.Text = &amp;quot;Rich Text&amp;quot; //Sets default value... Could be anything
+        },
+    }})
+    
+    ...
+}
+
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See these 2 parts of the &lt;em&gt;Go-QML&lt;/em&gt; GoDoc: &lt;a href=&#34;https://godoc.org/gopkg.in/qml.v1#RegisterTypes&#34;&gt;qml.RegisterTypes&lt;/a&gt;, and &lt;a href=&#34;https://godoc.org/gopkg.in/qml.v1#TypeSpec&#34;&gt;qml.TypeSpec&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The above code is where things get complicated.  We created an importable set of object for QML.  We will do that now.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;//assets/main.qml
+
+import QtQuick 2.3
+import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.0
+
+import TextConverter 1.0 //The import name is the string from the first param in the qml.RegisterTypes then the number 1 is from the next param, then dot third param
+
+ApplicationWindow {
+    ...
+    color: &amp;quot;#f1f1f1&amp;quot; // Old code for point of reference
+    
+    HTMLText { //Note the entity is the same name as the struct we created
+        id: htmlText //Unique identifier
+        text: &amp;quot;&amp;quot; //We create this to initialize the text param
+        //Also note the lowercase text param I will explain below
+    }
+    
+    ...
+    
+        TextArea {
+            id: mdarea
+            ...
+            
+            Keys.onReleased: { //While the mdarea is in focus and once you release after a key press we will call this function
+                htmlText.setHTMLText(mdarea.text) //Here we run the method called in our Go code that will set the HTMLText.Text
+                rtarea.text = htmlText.text //Here we call the htmlText by its Id and set rtarea&#39;s text param as the formatted text 
+            }
+        }
+        
+        ...
+}
+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The GoDoc for Go-QML explains the lower casing: &lt;a href=&#34;https://godoc.org/gopkg.in/qml.v1#hdr-Lowercasing_of_names&#34;&gt;Lowercasing_of_names&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the above code you will see that I used &lt;a href=&#34;http://doc.qt.io/qt-5/qml-qtquick-keys.html#released-signal&#34;&gt;&lt;em&gt;Keys.onReleased&lt;/em&gt;&lt;/a&gt;, at first I did &lt;em&gt;onPressed&lt;/em&gt; but that sends the signal before the new character is added so &lt;em&gt;rtarea&lt;/em&gt; was always one character behind.&lt;/p&gt;
+
+&lt;p&gt;Now the app will auto sync and parse the markdown you write in &lt;em&gt;mdarea&lt;/em&gt; and format it to look nice in the &lt;em&gt;rtarea&lt;/em&gt;.  But what if we wanted to see the HTML code.  Well what we will do next is make it so if we click into the &lt;em&gt;rtarea&lt;/em&gt; it will automatically show the raw HTML.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;//assets/main.qml
+
+...
+
+    TextArea {
+        id: rtarea
+        ...
+        
+        onActiveFocusChange: { //Signal if you leave or enter the focus of rtarea
+            if(!activeFocus) { //if you are not in the TextArea
+                rtarea.textFormat = TextEdit.RichText //change the rtarea.textFormat to show the RichText, default
+            } else { //if you are focused on the rtarea 
+                rtarea.textFormat = TextEdit.PlainText //switch the textFormat to PlainText
+                htmlText.setHTMLText(mdarea.text) //now we grab the mdarea.text and parse the markdown
+                rtarea.text = htmlText.text //and set the newly parsed text to the rtarea.text
+            }
+        }
+    }
+    
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may ask why I took the extra 2 steps at the end of the else statement.  Well in QML once you set the &lt;em&gt;TextArea&lt;/em&gt; to show &lt;em&gt;RichText&lt;/em&gt;, QML adds the &lt;em&gt;html&lt;/em&gt;, &lt;em&gt;header&lt;/em&gt;, and &lt;em&gt;body&lt;/em&gt; tags.  As well as it adds the font styling info as CSS which we do not want if we just want simple markdown HTML.  So once we set the &lt;em&gt;TextArea&lt;/em&gt; to &lt;em&gt;PlainText&lt;/em&gt; it will only show exactly what it is sent.&lt;/p&gt;
+
+&lt;p&gt;Now the final step will be to add a &lt;em&gt;Copy To HTML&lt;/em&gt; button, to easily extract the raw HTML. And paste it wherever.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;//assets/main.qml
+
+...
+
+ApplicationWindow {
+    ...
+    
+    toolBar: ToolBar { //Create a toolbar and set it as the ApplicationWindow&#39;s toolBar
+    //This will create the space and auto adjust the other children of ApplicationWindow down
+        RowLayout { //This formats the toolbar to move the buttons side by side
+            width: parent.width
+            height: prent.height
+            
+            Button {
+                Layout.alignment: Qt.AlignRight //This tells QML that the button needs to be auto formatted to align right
+                text: &amp;quot;Copy To HTML&amp;quot;
+                
+                onClicked: htmlText.copyToClip(mdarea.text) //We will create this method in the next part
+        }
+    }
+    
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The code above will now create a &lt;em&gt;ToolBar&lt;/em&gt; and add the &lt;em&gt;Copy To HTML&lt;/em&gt; &lt;em&gt;Button&lt;/em&gt;, and call the currently non-existent method of &lt;em&gt;HTMLText.CopyToClip(string)&lt;/em&gt;.  Let&amp;rsquo;s build that now.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
+
+...
+
+type HTMLText struct { //Already created, just a point of reference
+    ...
+}
+
+func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer that takes a raw markdown string
+    formatted := blackfriday.MarkdownCommon([]byte(txt)) //We&#39;ve seen this before
+    _ = clipboard.WriteAll(string(formatted)) //Make sure you imported the clipboard lib and we convert the formatted []byte to a string
+}
+
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and that&amp;rsquo;s it! While there are a lot of other things you can do with this, like sanitizing the markdown.  But now you can experiment with stuff like saving an HTML file and so forth.&lt;/p&gt;
+
+&lt;p&gt;Good Luck!&lt;/p&gt;
+
+&lt;p&gt;The complete source code is found: &lt;a href=&#34;https://github.com/dtoebe/qml_markdown&#34;&gt;https://github.com/dtoebe/qml_markdown&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Convert VMDK to qcow2</title>

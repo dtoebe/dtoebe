@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>dtoebe.com</title>
-    <link>http://www.dtoebe.com/</link>
-    <description>Recent content on dtoebe.com</description>
+    <title>Qml on dtoebe.com</title>
+    <link>http://www.dtoebe.com/categories/qml/</link>
+    <description>Recent content in Qml on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 16 May 2016 02:07:24 -0700</lastBuildDate>
-    <atom:link href="http://www.dtoebe.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.dtoebe.com/categories/qml/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Write a simple Markdown editor with Go-QML</title>
@@ -445,124 +445,6 @@ func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer t
 &lt;p&gt;Good Luck!&lt;/p&gt;
 
 &lt;p&gt;The complete source code is found: &lt;a href=&#34;https://github.com/dtoebe/qml_markdown&#34;&gt;https://github.com/dtoebe/qml_markdown&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Convert VMDK to qcow2</title>
-      <link>http://www.dtoebe.com/post/convert_vmdk_to_qcow2/</link>
-      <pubDate>Sun, 15 May 2016 01:43:50 -0700</pubDate>
-      
-      <guid>http://www.dtoebe.com/post/convert_vmdk_to_qcow2/</guid>
-      <description>
-
-&lt;h1 id=&#34;convert-vmdk-to-qcow2:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Convert VMDK to qcow2&lt;/h1&gt;
-
-&lt;p&gt;This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.&lt;/p&gt;
-
-&lt;h3 id=&#34;some-background:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Some Background&lt;/h3&gt;
-
-&lt;p&gt;VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.&lt;/p&gt;
-
-&lt;p&gt;About 6 months ago I switched to using qemu/KVM, first with &lt;a href=&#34;https://wiki.gnome.org/action/show/Apps/Boxes?action=show&amp;amp;redirect=Boxes&#34;&gt;Gnome-Boxes&lt;/a&gt;, then &lt;a href=&#34;https://virt-manager.org/&#34;&gt;Virt-Manager&lt;/a&gt;. While Gnome-Boxes has a really nice interface, Virt-Manager allows for more detailed configuration of your virtual machine.  So for a while I stuck with Virt-Manager.&lt;/p&gt;
-
-&lt;p&gt;All that time I prefered to use command-line tools over GUI tools for just about everything I do.  I also hated the overhead another GUI tool creates, especially since running a vm is so heavy anyways.&lt;/p&gt;
-
-&lt;p&gt;I really don&amp;rsquo;t manage virtual-machines on a day to day basis, so I never really rememeber every step on what to do.  This post is to not only help you learn how to convert VMDK to qcow2, but give me a reference to look back on.&lt;/p&gt;
-
-&lt;h3 id=&#34;getting-started:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Getting Started&lt;/h3&gt;
-
-&lt;p&gt;I personally am running &lt;a href=&#34;https://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt;, but qemu/KVM can be installed on any modern Linux distro.  One reason I love Arch is the &lt;a href=&#34;https://wiki.archlinux.org/&#34;&gt;Arch wiki&lt;/a&gt;.  In my opionin (and many others), there is no better resource for information on Linux, and Linux operating systems.&lt;/p&gt;
-
-&lt;p&gt;To install qemu/KVM on Arch Linux go to the &lt;a href=&#34;https://wiki.archlinux.org/index.php/QEMU&#34;&gt;qemu in the wiki&lt;/a&gt;.  There you will see the instructions on what you need to install. To start install:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# pacman -S qemu
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;I would like to point out that when I refrence a shell command, like the one above.  I&amp;rsquo;ll use &amp;ldquo;#&amp;rdquo; at the beginning to refrence a &amp;ldquo;root&amp;rdquo; command. This means you will need to be the root user or if you have &amp;ldquo;sudo&amp;rdquo;, you can prepend the command with sudo.  Also you may see me use &amp;ldquo;$&amp;rdquo;, this will mean you can run the command as your user.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Once I install qemu I add my user to the &amp;ldquo;libvirt&amp;rdquo;, and &amp;ldquo;kvm&amp;rdquo; groups&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# gpasswd -a &amp;lt;your User Name&amp;gt; libvirt
-
-# gpasswd -a &amp;lt;your User Name&amp;gt; kvm
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Replace &lt;your User Name&gt; with your actual user name.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;You will need to log out and log back in.  &lt;em&gt;Or you could run the following commands&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ newgrp libvirt
-
-$ newgrp kvm
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Note: This only works for the current instance of your user.  This means if you switch users or close your terminal it will revert back.  To perminatly change your inclusion into the groups you will need to log out and back in&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;getting-the-virtualbox-images:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Getting the VirtualBox images&lt;/h3&gt;
-
-&lt;p&gt;When building websites, you always want to confirm that all aspects of your site will work on all major browsers.  This includes Google Chrome, FireFox, and Internet Explorer/Edge.  While the frst 2 are easily installed on Linux, IE/Edge are only available on Windows.  But Microsoft has made VirtualBox images availale to test multiple versions of IE and Edge on Linux. Yes I said Microsoft, now pick your jaw off of the floor.&lt;/p&gt;
-
-&lt;p&gt;Now open your favorite browser and go to the &lt;a href=&#34;https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/linux/&#34;&gt;MS developer site&lt;/a&gt;, and download the IE/Edge version of your choice.  For the purposes of this tutorial I downloaded the IE11 on Win81.&lt;/p&gt;
-
-&lt;p&gt;These are LARGE downloads, this one was 5.3GiB.  It took about 30mmin to download.&lt;/p&gt;
-
-&lt;p&gt;Once downloaded go to the directory you downloaded it in (most likely ~/Downloads).  Now they are downloaded in .zip format so run:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ unzip IE11.Win8.1.For.Windows.VirtualBox.zip
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This may take a couple minutes because of how large the file zise is.&lt;/p&gt;
-
-&lt;p&gt;Once unzipped you will see a new file in your directory: IE11 - Win8.1.ova.  .ova files are just achive files meant to bundle the vmdk file and an ovf file.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;ovf files are XML template files VirtualBox uses to easily transfer vm settings&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;to un-archive the ova file run:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ tar xvf IE11\ -\ Win8.1.ova
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;The forward slashes in the above command are space escapes, so your shell knows there is a space in the filename&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Now you will see 2 new files in your directory: IE11 - Win8.1-disk1.vmdk, and IE11 - Win8.1.ovf. Finally we found our vmdk file&lt;/p&gt;
-
-&lt;h3 id=&#34;converting-vmdk-to-qcow2:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Converting VMDK to qcow2&lt;/h3&gt;
-
-&lt;p&gt;Since I don&amp;rsquo;t know of a way to run vmdk files on qemu we need to convert it. Good thing there is a built in conversion tool.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ qemu-img convert -f vmdk -O qcow2 IE11\ -\ Win8.1-disk1.vmdk IE11-Win8.1.qcow2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s break that down:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;qemu-img&lt;/strong&gt; - is the built-in qemu image manipulation tool&lt;/li&gt;
-&lt;li&gt;convert - tells qemu-image that you want to convert one image file, such as .img, or in this case .vmdk files&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;-f vmdk&lt;/strong&gt; &lt;em&gt;(optional)&lt;/em&gt; - This is an optional command (u could leave it out) qemu can auto-detect.  This tells qemu what type of file you are converting from.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;-O qcow2&lt;/strong&gt; &lt;em&gt;(Uppercase letter O)&lt;/em&gt; - This tells qemu what type of file you will convert to.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;IE11\ -\ Win8.1.vmdk&lt;/strong&gt; - Is the file you are converting from.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;IE11-Win8.1.qcow2&lt;/strong&gt; &lt;em&gt;(Can be any name you want it)&lt;/em&gt; - Is the output file your are converting to.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;And that&amp;rsquo;s it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert&amp;hellip;&lt;/p&gt;
-
-&lt;h3 id=&#34;running-your-new-qcow2-image:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Running your new qcow2 image&lt;/h3&gt;
-
-&lt;p&gt;To run your new qcow2 image just run:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ qemu-system-x86_64 -m 4G -smp 2 --enable-kvm IE11-Win8.1.qcow2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s break that down:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;qemu-system-x86_64&lt;/strong&gt; - This command launches quemu in x64bit mode (requires x64bit processor).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;-m 4G&lt;/strong&gt; - allocates 4 GB of ram to the virtual machine.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;-smp 2&lt;/strong&gt; &lt;em&gt;(optional)&lt;/em&gt; - Suggests to qemu to use the number refrenced of cores of your CPU to the virtual machine. I say suggests, because you can put 8 on a 4 core machine, and qemu will run, but could lock up your system. It is optional and leaving it out will make the vm run under 1 CPU core.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&amp;ndash;enable-kvm&lt;/strong&gt; &lt;em&gt;(optional)&lt;/em&gt; - Enables KVM on your vm to help with preformance.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;IE-Win8.1.qcow2&lt;/strong&gt; - is the path to the image you want to run.&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
