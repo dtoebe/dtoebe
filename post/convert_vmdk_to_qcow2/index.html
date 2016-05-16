@@ -177,12 +177,12 @@ $ newgrp kvm
 <p>Let&rsquo;s break that down:</p>
 
 <ul>
-<li>qemu-img - is the built-in qemu image manipulation tool</li>
+<li><strong>qemu-img</strong> - is the built-in qemu image manipulation tool</li>
 <li>convert - tells qemu-image that you want to convert one image file, such as .img, or in this case .vmdk files</li>
-<li>-f vmdk (optional) - This is an optional command (u could leave it out) qemu can auto-detect.  This tells qemu what type of file you are converting from.</li>
-<li>-O qcow2 (Uppercase letter O) - This tells qemu what type of file you will convert to.</li>
-<li>IE11\ -\ Win8.1.vmdk - Is the file you are converting from.</li>
-<li>IE11-Win8.1.qcow2 (Can be any name you want it) - Is the output file your are converting to.</li>
+<li><strong>-f vmdk</strong> <em>(optional)</em> - This is an optional command (u could leave it out) qemu can auto-detect.  This tells qemu what type of file you are converting from.</li>
+<li><strong>-O qcow2</strong> <em>(Uppercase letter O)</em> - This tells qemu what type of file you will convert to.</li>
+<li><strong>IE11\ -\ Win8.1.vmdk</strong> - Is the file you are converting from.</li>
+<li><strong>IE11-Win8.1.qcow2</strong> <em>(Can be any name you want it)</em> - Is the output file your are converting to.</li>
 </ul>
 
 <p>And that&rsquo;s it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert&hellip;</p>
@@ -197,15 +197,29 @@ $ newgrp kvm
 <p>Let&rsquo;s break that down:</p>
 
 <ul>
-<li>qemu-system-x86_64 - This command launches quemu in x64bit mode (requires x64bit processor).</li>
-<li>-m 4G - allocates 4 GB of ram to the virtual machine.</li>
-<li>-smp 2 (optional) - Suggests to qemu to use the number refrenced of cores of your CPU to the virtual machine. I say suggests, because you can put 8 on a 4 core machine, and qemu will run, but could lock up your system. It is optional and leaving it out will make the vm run under 1 CPU core.</li>
-<li>&ndash;enable-kvm (optional) - Enables KVM on your vm to help with preformance.</li>
-<li>IE-Win8.1.qcow2 - is the path to the image you want to run.</li>
+<li><strong>qemu-system-x86_64</strong> - This command launches quemu in x64bit mode (requires x64bit processor).</li>
+<li><strong>-m 4G</strong> - allocates 4 GB of ram to the virtual machine.</li>
+<li><strong>-smp 2</strong> <em>(optional)</em> - Suggests to qemu to use the number refrenced of cores of your CPU to the virtual machine. I say suggests, because you can put 8 on a 4 core machine, and qemu will run, but could lock up your system. It is optional and leaving it out will make the vm run under 1 CPU core.</li>
+<li><strong>&ndash;enable-kvm</strong> <em>(optional)</em> - Enables KVM on your vm to help with preformance.</li>
+<li><strong>IE-Win8.1.qcow2</strong> - is the path to the image you want to run.</li>
 </ul>
 
                     </div>
-                    
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'dtoebe.com';
+    var disqus_identifier = 'http:\/\/www.dtoebe.com\/post\/convert_vmdk_to_qcow2\/';
+    var disqus_title = 'Convert VMDK to qcow2';
+    var disqus_url = 'http:\/\/www.dtoebe.com\/post\/convert_vmdk_to_qcow2\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
                 </section>
             </div>
             <div class="footer">

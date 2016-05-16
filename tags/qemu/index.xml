@@ -98,12 +98,12 @@ $ newgrp kvm
 &lt;p&gt;Let&amp;rsquo;s break that down:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;qemu-img - is the built-in qemu image manipulation tool&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;qemu-img&lt;/strong&gt; - is the built-in qemu image manipulation tool&lt;/li&gt;
 &lt;li&gt;convert - tells qemu-image that you want to convert one image file, such as .img, or in this case .vmdk files&lt;/li&gt;
-&lt;li&gt;-f vmdk (optional) - This is an optional command (u could leave it out) qemu can auto-detect.  This tells qemu what type of file you are converting from.&lt;/li&gt;
-&lt;li&gt;-O qcow2 (Uppercase letter O) - This tells qemu what type of file you will convert to.&lt;/li&gt;
-&lt;li&gt;IE11\ -\ Win8.1.vmdk - Is the file you are converting from.&lt;/li&gt;
-&lt;li&gt;IE11-Win8.1.qcow2 (Can be any name you want it) - Is the output file your are converting to.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-f vmdk&lt;/strong&gt; &lt;em&gt;(optional)&lt;/em&gt; - This is an optional command (u could leave it out) qemu can auto-detect.  This tells qemu what type of file you are converting from.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-O qcow2&lt;/strong&gt; &lt;em&gt;(Uppercase letter O)&lt;/em&gt; - This tells qemu what type of file you will convert to.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IE11\ -\ Win8.1.vmdk&lt;/strong&gt; - Is the file you are converting from.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IE11-Win8.1.qcow2&lt;/strong&gt; &lt;em&gt;(Can be any name you want it)&lt;/em&gt; - Is the output file your are converting to.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;And that&amp;rsquo;s it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert&amp;hellip;&lt;/p&gt;
@@ -118,11 +118,11 @@ $ newgrp kvm
 &lt;p&gt;Let&amp;rsquo;s break that down:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;qemu-system-x86_64 - This command launches quemu in x64bit mode (requires x64bit processor).&lt;/li&gt;
-&lt;li&gt;-m 4G - allocates 4 GB of ram to the virtual machine.&lt;/li&gt;
-&lt;li&gt;-smp 2 (optional) - Suggests to qemu to use the number refrenced of cores of your CPU to the virtual machine. I say suggests, because you can put 8 on a 4 core machine, and qemu will run, but could lock up your system. It is optional and leaving it out will make the vm run under 1 CPU core.&lt;/li&gt;
-&lt;li&gt;&amp;ndash;enable-kvm (optional) - Enables KVM on your vm to help with preformance.&lt;/li&gt;
-&lt;li&gt;IE-Win8.1.qcow2 - is the path to the image you want to run.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;qemu-system-x86_64&lt;/strong&gt; - This command launches quemu in x64bit mode (requires x64bit processor).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-m 4G&lt;/strong&gt; - allocates 4 GB of ram to the virtual machine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-smp 2&lt;/strong&gt; &lt;em&gt;(optional)&lt;/em&gt; - Suggests to qemu to use the number refrenced of cores of your CPU to the virtual machine. I say suggests, because you can put 8 on a 4 core machine, and qemu will run, but could lock up your system. It is optional and leaving it out will make the vm run under 1 CPU core.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;enable-kvm&lt;/strong&gt; &lt;em&gt;(optional)&lt;/em&gt; - Enables KVM on your vm to help with preformance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IE-Win8.1.qcow2&lt;/strong&gt; - is the path to the image you want to run.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
