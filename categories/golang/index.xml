@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on dtoebe.com</title>
-    <link>http://dtobe.com/categories/golang/</link>
+    <link>http://dtoebe.com/categories/golang/</link>
     <description>Recent content in Golang on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 16 May 2016 02:07:24 -0700</lastBuildDate>
-    <atom:link href="http://dtobe.com/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dtoebe.com/categories/golang/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Write a simple Markdown editor with Go-QML</title>
-      <link>http://dtobe.com/post/simple_markdown_editor_in_go-qml/</link>
+      <link>http://dtoebe.com/post/simple_markdown_editor_in_go-qml/</link>
       <pubDate>Mon, 16 May 2016 02:07:24 -0700</pubDate>
       
-      <guid>http://dtobe.com/post/simple_markdown_editor_in_go-qml/</guid>
+      <guid>http://dtoebe.com/post/simple_markdown_editor_in_go-qml/</guid>
       <description>
 
 &lt;h3 id=&#34;background:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Background:&lt;/h3&gt;

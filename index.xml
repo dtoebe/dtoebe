@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>dtoebe.com</title>
-    <link>http://dtobe.com/</link>
+    <link>http://dtoebe.com/</link>
     <description>Recent content on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 16 May 2016 02:07:24 -0700</lastBuildDate>
-    <atom:link href="http://dtobe.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dtoebe.com/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Write a simple Markdown editor with Go-QML</title>
-      <link>http://dtobe.com/post/simple_markdown_editor_in_go-qml/</link>
+      <link>http://dtoebe.com/post/simple_markdown_editor_in_go-qml/</link>
       <pubDate>Mon, 16 May 2016 02:07:24 -0700</pubDate>
       
-      <guid>http://dtobe.com/post/simple_markdown_editor_in_go-qml/</guid>
+      <guid>http://dtoebe.com/post/simple_markdown_editor_in_go-qml/</guid>
       <description>
 
 &lt;h3 id=&#34;background:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Background:&lt;/h3&gt;
@@ -450,10 +450,10 @@ func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer t
     
     <item>
       <title>Convert VMDK to qcow2</title>
-      <link>http://dtobe.com/post/convert_vmdk_to_qcow2/</link>
+      <link>http://dtoebe.com/post/convert_vmdk_to_qcow2/</link>
       <pubDate>Sun, 15 May 2016 01:43:50 -0700</pubDate>
       
-      <guid>http://dtobe.com/post/convert_vmdk_to_qcow2/</guid>
+      <guid>http://dtoebe.com/post/convert_vmdk_to_qcow2/</guid>
       <description>
 
 &lt;p&gt;This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.&lt;/p&gt;
