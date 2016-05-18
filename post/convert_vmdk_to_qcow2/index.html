@@ -1,102 +1,353 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convert VMDK to qcow2 &middot; dtoebe.com</title>
+<!DOCTYPE HTML>
 
-    <meta name="description" content="">
-
-    <meta name="generator" content="Hugo 0.15" />
-    <meta name="twitter:card" content="summary">
-    
-    <meta name="twitter:title" content="Convert VMDK to qcow2 &middot; dtoebe.com">
-    <meta name="twitter:description" content="">
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Convert VMDK to qcow2 &middot; dtoebe.com">
-    <meta property="og:description" content="">
-
-    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Oxygen:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
-    <!--<![endif]-->
-
-    <link rel="stylesheet" href="http://www.dtoebe.com/css/all.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <link rel="alternate" type="application/rss+xml" title="dtoebe.com" href="http://www.dtoebe.com/index.xml" />
-</head>
-<body>
-
-
-<div id="layout" class="pure-g">
-    <div class="sidebar pure-u-1 pure-u-md-1-4">
-    <div class="header">
-        <hgroup>
-            <h1 class="brand-title"><a href="http://www.dtoebe.com">dtoebe.com</a></h1>
-            <h2 class="brand-tagline"> Just the ramblings of a passionate programmer and Linux lover </h2>
-        </hgroup>
-
-        <nav class="nav">
-            <ul class="nav-list">
-                
-                <li class="nav-item">
-                    <a class="pure-button" href="https://twitter.com/dtoebe"><i class="fa fa-twitter"></i> Twitter</a>
-                </li>
-                
-                
-                <li class="nav-item">
-                    <a class="pure-button" href="https://github.com/dtoebe "><i class="fa fa-github-alt"></i> github</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="pure-button" href="http://www.dtoebe.com/index.xml"><i class="fa fa-rss"></i> rss</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
-
-
-    <div class="content pure-u-1 pure-u-md-3-4">
-        <div>
+<html>
+    <head>
+        
             
-            <div class="posts">
-                <h1 class="content-subhead">15 May 2016, 01:43</h1>
-                <section class="post">
-                    <header class="post-header">
+                <title>Convert VMDK to qcow2</title>
+            
+        
 
-                        <a href="http://www.dtoebe.com/post/convert_vmdk_to_qcow2/" class="post-title">Convert VMDK to qcow2</a>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.15" />
+        
 
-                        <p class="post-meta">
-                            
-                            
-                                under 
-                                
-                                <a class="post-category post-category-qemu" href="http://www.dtoebe.com/categories/qemu">qemu</a>
-                            
-                        </p>
-                    </header>
-                    
-                    <div class="post-share">
-                        <div class="post-share-links">
-                            <h4 style="">Share</h4>
-                            <a href="#" data-type="facebook" data-url="http://www.dtoebe.com/post/convert_vmdk_to_qcow2/" data-title="Convert VMDK to qcow2" data-description="" data-media="" class="prettySocial fa fa-facebook"></a>
-                            <a href="#" data-type="googleplus" data-url="http://www.dtoebe.com/post/convert_vmdk_to_qcow2/" data-description="" class="prettySocial fa fa-google-plus"></a>
-                            
-                            
-                        </div>
-                    </div>
-                    
-                    <div class="post-description">
+
+        
+        
+            
+                <meta name="description" content="Just the ramblings of a passionate programmer and Linux lover">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Convert VMDK to qcow2"/>
+<meta name="twitter:description" content="This is my fist post on this blog, so I decided to do something simple. Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window. Some Background VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is."/>
+<meta name="twitter:site" content="@dtoebe"/>
+
+
+        <meta property="og:title" content="Convert VMDK to qcow2" />
+<meta property="og:description" content="This is my fist post on this blog, so I decided to do something simple. Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window. Some Background VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://dtobe.com/post/convert_vmdk_to_qcow2/" />
+
+
+<meta property="og:updated_time" content="2016-05-15T01:43:50-07:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Convert VMDK to qcow2">
+<meta itemprop="description" content="This is my fist post on this blog, so I decided to do something simple. Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window. Some Background VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.">
+
+
+<meta itemprop="dateModified" content="2016-05-15T01:43:50-07:00" />
+<meta itemprop="wordCount" content="1004">
+
+
+
+<meta itemprop="keywords" content="golang,qemu,qml,go,go-qml,golang,kvm,qcow2,qemu,qml,virtualbox,vmdk," />
+
+        
+
+        
+
+        
+        
+            
+        
+
+        
+        
+            <link rel="stylesheet" href="/css/google-font.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/main.css" />
+            <link rel="stylesheet" href="/css/add-on.css" />
+            <link rel="stylesheet" href="/css/monokai-sublime.css">
+        
+
+        
+
+        
+        
+        
+            
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-77817614-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">dtoebe.com</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/post/">
                         
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Blog
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories/">
+                        Categories
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:http://dtobe.com">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-<h1 id="convert-vmdk-to-qcow2:f1a3a9d61180f243fd47a09ec04d7573">Convert VMDK to qcow2</h1>
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:http://dtobe.com">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/post/">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Blog
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories/">
+                            <h3>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="http://dtobe.com/post/simple_markdown_editor_in_go-qml/"><p>Write a simple Markdown editor with Go-QML</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://dtobe.com/post/convert_vmdk_to_qcow2/"><p>Convert VMDK to qcow2</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&text=Convert%20VMDK%20to%20qcow2&via=dtoebe" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="http://dtobe.com/post/convert_vmdk_to_qcow2/">Convert VMDK to qcow2</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2016-05-15'>
+            May 15, 2016</time>
+        <span class="author"></span>
+        
+            <p>5 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&text=Convert%20VMDK%20to%20qcow2&via=dtoebe" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fdtobe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    
+
+    <div id="content">
+        
 
 <p>This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.</p>
 
@@ -116,14 +367,14 @@
 
 <p>To install qemu/KVM on Arch Linux go to the <a href="https://wiki.archlinux.org/index.php/QEMU">qemu in the wiki</a>.  There you will see the instructions on what you need to install. To start install:</p>
 
-<pre><code># pacman -S qemu
+<pre><code class="language-Shell"># pacman -S qemu
 </code></pre>
 
 <p><em>I would like to point out that when I refrence a shell command, like the one above.  I&rsquo;ll use &ldquo;#&rdquo; at the beginning to refrence a &ldquo;root&rdquo; command. This means you will need to be the root user or if you have &ldquo;sudo&rdquo;, you can prepend the command with sudo.  Also you may see me use &ldquo;$&rdquo;, this will mean you can run the command as your user.</em></p>
 
 <p>Once I install qemu I add my user to the &ldquo;libvirt&rdquo;, and &ldquo;kvm&rdquo; groups</p>
 
-<pre><code># gpasswd -a &lt;your User Name&gt; libvirt
+<pre><code class="language-Shell"># gpasswd -a &lt;your User Name&gt; libvirt
 
 # gpasswd -a &lt;your User Name&gt; kvm
 </code></pre>
@@ -132,7 +383,7 @@
 
 <p>You will need to log out and log back in.  <em>Or you could run the following commands</em></p>
 
-<pre><code>$ newgrp libvirt
+<pre><code class="language-Shell">$ newgrp libvirt
 
 $ newgrp kvm
 </code></pre>
@@ -149,7 +400,7 @@ $ newgrp kvm
 
 <p>Once downloaded go to the directory you downloaded it in (most likely ~/Downloads).  Now they are downloaded in .zip format so run:</p>
 
-<pre><code>$ unzip IE11.Win8.1.For.Windows.VirtualBox.zip
+<pre><code class="language-Shell">$ unzip IE11.Win8.1.For.Windows.VirtualBox.zip
 </code></pre>
 
 <p>This may take a couple minutes because of how large the file zise is.</p>
@@ -160,7 +411,7 @@ $ newgrp kvm
 
 <p>to un-archive the ova file run:</p>
 
-<pre><code>$ tar xvf IE11\ -\ Win8.1.ova
+<pre><code class="language-Shell">$ tar xvf IE11\ -\ Win8.1.ova
 </code></pre>
 
 <p><em>The forward slashes in the above command are space escapes, so your shell knows there is a space in the filename</em></p>
@@ -171,7 +422,7 @@ $ newgrp kvm
 
 <p>Since I don&rsquo;t know of a way to run vmdk files on qemu we need to convert it. Good thing there is a built in conversion tool.</p>
 
-<pre><code>$ qemu-img convert -f vmdk -O qcow2 IE11\ -\ Win8.1-disk1.vmdk IE11-Win8.1.qcow2
+<pre><code class="language-Shell">$ qemu-img convert -f vmdk -O qcow2 IE11\ -\ Win8.1-disk1.vmdk IE11-Win8.1.qcow2
 </code></pre>
 
 <p>Let&rsquo;s break that down:</p>
@@ -191,7 +442,7 @@ $ newgrp kvm
 
 <p>To run your new qcow2 image just run:</p>
 
-<pre><code>$ qemu-system-x86_64 -m 4G -smp 2 --enable-kvm IE11-Win8.1.qcow2
+<pre><code class="language-Shell">$ qemu-system-x86_64 -m 4G -smp 2 --enable-kvm IE11-Win8.1.qcow2
 </code></pre>
 
 <p>Let&rsquo;s break that down:</p>
@@ -204,13 +455,59 @@ $ newgrp kvm
 <li><strong>IE-Win8.1.qcow2</strong> - is the path to the image you want to run.</li>
 </ul>
 
-                    </div>
-                    <div id="disqus_thread"></div>
+    </div>
+
+    <footer>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Category
+                    
+                
+            </li>
+        
+    
+
+    
+    
+        <li><a href='/categories/qemu'>qemu</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+
+    
+        <li><a href="http://dtobe.com/post/simple_markdown_editor_in_go-qml/"
+                class="button big next">Write a simple Markdown editor with Go-QML</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            <div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'dtoebecom.disq.com';
-    var disqus_identifier = 'http:\/\/www.dtoebe.com\/post\/convert_vmdk_to_qcow2\/';
+    var disqus_shortname = 'dtoebecom.disq.us';
+    var disqus_identifier = 'http:\/\/dtobe.com\/post\/convert_vmdk_to_qcow2\/';
     var disqus_title = 'Convert VMDK to qcow2';
-    var disqus_url = 'http:\/\/www.dtoebe.com\/post\/convert_vmdk_to_qcow2\/';
+    var disqus_url = 'http:\/\/dtobe.com\/post\/convert_vmdk_to_qcow2\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -220,31 +517,299 @@ $ newgrp kvm
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-                </section>
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" class="logo"><img src="/images/self_small.jpg" alt="me!" /></a>
+                
+            
+            
+                <header>
+                    <h2>dtoebe.com</h2>
+                    <p>Just the ramblings of a passionate programmer and Linux lover</p>
+                </header>
+            
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/dtoebe" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//reddit.com/user/dtoebe" target="_blank" title="Reddit" class="fa fa-reddit"></a></li>
+
+
+
+
+
+<li><a href="//plus.google.com/+dtoebe" target="_blank" title="Google+" class="fa fa-google-plus"></a></li>
+
+
+
+
+
+<li><a href="//twitter.com/dtoebe" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+                
+            </ul>
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="http://dtobe.com/post/simple_markdown_editor_in_go-qml/">Write a simple Markdown editor with Go-QML</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2016-05-16'>
+                                    May 16, 2016</time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="http://dtobe.com/post/convert_vmdk_to_qcow2/">Convert VMDK to qcow2</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2016-05-15'>
+                                    May 15, 2016</time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /blog/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/golang/">golang</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/qml/">qml</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/qemu/">qemu</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+            </ul>
+        </section>
+    
+
+    
+        
+
+    
+        <section id="footer">
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/dtoebe" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//reddit.com/user/dtoebe" target="_blank" title="Reddit" class="fa fa-reddit"></a></li>
+
+
+
+
+
+<li><a href="//plus.google.com/+dtoebe" target="_blank" title="Google+" class="fa fa-google-plus"></a></li>
+
+
+
+
+
+<li><a href="//twitter.com/dtoebe" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+                
+            </ul>
+
+            <p class="copyright">&copy; dtoebe.com. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
             </div>
-            <div class="footer">
-    <div class="pure-menu pure-menu-horizontal pure-menu-open">
-        <ul>
-            <li>Powered by <a class="hugo" href="http://hugo.spf13.com/" target="_blank">hugo</a></li>
-        </ul>
-    </div>
-</div>
-<script src="http://www.dtoebe.com/js/all.min.js"></script>
-        </div>
-    </div>
-</div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
 
+        
+        
+            
+        
 
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        
+        
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/skel.min.js"></script>
+            <script src="/js/util.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/backToTop.js"></script>
+            <script src="/js/highlight.pack.js"></script>
+        
 
-ga('create', '', 'auto');
-ga('send', 'pageview');
+        
 
-</script>
-
-</body>
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
 </html>
+

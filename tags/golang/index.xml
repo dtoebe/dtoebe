@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on dtoebe.com</title>
-    <link>http://www.dtoebe.com/tags/golang/</link>
+    <link>http://dtobe.com/tags/golang/</link>
     <description>Recent content in Golang on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 16 May 2016 02:07:24 -0700</lastBuildDate>
-    <atom:link href="http://www.dtoebe.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dtobe.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Write a simple Markdown editor with Go-QML</title>
-      <link>http://www.dtoebe.com/post/simple_markdown_editor_in_go-qml/</link>
+      <link>http://dtobe.com/post/simple_markdown_editor_in_go-qml/</link>
       <pubDate>Mon, 16 May 2016 02:07:24 -0700</pubDate>
       
-      <guid>http://www.dtoebe.com/post/simple_markdown_editor_in_go-qml/</guid>
+      <guid>http://dtobe.com/post/simple_markdown_editor_in_go-qml/</guid>
       <description>
 
-&lt;h3 id=&#34;background:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Background&lt;/h3&gt;
+&lt;h3 id=&#34;background:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Background:&lt;/h3&gt;
 
 &lt;p&gt;Golang has really become my go to language, and has replaced Python as my main scripting language.  I love how easy it is to write. I love haw fast it is to compile, and is a compiled language, so I can just distribute a single binary instead of hoping that there is a Python run-time install (I.E. small container images).  And with distributing these binaries, I can easily cross compile Golang to different architectures, and OS&amp;rsquo;s without installing a cumbersome tool-chain.&lt;/p&gt;
 
@@ -35,7 +35,7 @@
 
 &lt;p&gt;To start understand I am using &lt;a href=&#34;https://www.archlinux.org&#34;&gt;Arch Linux&lt;/a&gt;, and all the packages I install through the system package manager will be for that system.  All the system packages will be for Go-QML, with the exception is for clipboard go lib, on Linux you will need either xclip or xsel.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;// Ubuntu (based), Debian
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;// Ubuntu (based), Debian
 # apt-get install xclip
 
 // Cent-OS, RHEL
@@ -53,12 +53,12 @@
 
 &lt;p&gt;To use Go-QML and all the QML imports in this project, install:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# pacman -S qt5-{base,declarative,quickcontrol}
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;# pacman -S qt5-{base,declarative,quickcontrol}
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;OK, so that command may look a little weird.  Using curly braces in your bash shell is a VERY powerful thing. Basically the command above is equivalent to:&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# pacman -S qt5-base qt5-declarative qt5-quickcontrol
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;# pacman -S qt5-base qt5-declarative qt5-quickcontrol
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;Also note that there is no spaces in the curly brackets, that is very important.  You can use that type of syntax when cp files or many other things&lt;/em&gt;&lt;/p&gt;
@@ -67,21 +67,21 @@
 
 &lt;p&gt;Now that everything is set let&amp;rsquo;s install the 3rd party Golang packages:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ go get -u -v gopkg.in/qml.v1
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;$ go get -u -v gopkg.in/qml.v1
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;Any errors that pop up while installing this package means you need to install more dependencies in your system.  See the Go-QML README for more info.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Now we will install the markdown parser:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ go get -u -v github.com/russross/blackfriday
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;$ go get -u -v github.com/russross/blackfriday
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This tutorial will use the basic settings of what you can do with &lt;em&gt;blackfriday&lt;/em&gt;.  For production use, you may want to sanitize the markdown.  All of that is covered in the &lt;em&gt;blackfriday&lt;/em&gt; README.&lt;/p&gt;
 
 &lt;p&gt;Finally we need to install the clipboard support:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ go get -u -v github.com/atotto/clipboard
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;$ go get -u -v github.com/atotto/clipboard
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;references:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;References&lt;/h3&gt;
@@ -100,7 +100,7 @@
 
 &lt;p&gt;At the time of writing I am using the most recent version of the Go language (1.6.2).  Changes in cgo in 1.6 has made it so &lt;em&gt;GO-QML&lt;/em&gt; won&amp;rsquo;t compile when the QML code tries communicating back to Go.  The work around referenced in the the tut I referenced at the end of the last section says to:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ GODEBUG=cgocheck=0 go run main.go
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;$ GODEBUG=cgocheck=0 go run main.go
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;So every time you run your program run it with those vars set.  &lt;em&gt;I do not recommend exporting those vars and making them global, because they may put other go programs at risk of possible security issues and errors.&lt;/em&gt;&lt;/p&gt;
@@ -111,7 +111,7 @@
 
 &lt;p&gt;Let&amp;rsquo;s go to your &lt;em&gt;$GOPATH/src&lt;/em&gt; dir, and create your directories. &lt;em&gt;Note: I prefer to have my GUI files in their own sub-dir in the project no matter how small the project is.&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ cd $GOPATH/src &amp;amp;&amp;amp; mkdir -p qml-md/assets &amp;amp;&amp;amp; cd qml-md &amp;amp;&amp;amp; touch main.go assets/main.qml
+&lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;$ cd $GOPATH/src &amp;amp;&amp;amp; mkdir -p qml-md/assets &amp;amp;&amp;amp; cd qml-md &amp;amp;&amp;amp; touch main.go assets/main.qml
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This will create all the needed dir tree and needed files&lt;/p&gt;
