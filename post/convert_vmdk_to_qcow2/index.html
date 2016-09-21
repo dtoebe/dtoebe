@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -113,15 +113,21 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/post/">
+                    <a href="/post">
                         
                             <i class="fa fa-newspaper-o">&nbsp;</i>Blog
                     </a>
                 </li>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About Me
                     </a>
                 </li>
             
@@ -164,7 +170,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/post/">
+                        <a href="/post">
                             <h3>
                                 
                                     <i class="fa fa-newspaper-o">&nbsp;</i>
@@ -175,10 +181,19 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                 Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About Me
                             </h3>
                         </a>
                     </li>
@@ -351,7 +366,7 @@ ga('send', 'pageview');
 
 <p>This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.</p>
 
-<h3 id="some-background:f1a3a9d61180f243fd47a09ec04d7573">Some Background</h3>
+<h3 id="some-background">Some Background</h3>
 
 <p>VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.</p>
 
@@ -361,7 +376,7 @@ ga('send', 'pageview');
 
 <p>I really don&rsquo;t manage virtual-machines on a day to day basis, so I never really rememeber every step on what to do.  This post is to not only help you learn how to convert VMDK to qcow2, but give me a reference to look back on.</p>
 
-<h3 id="getting-started:f1a3a9d61180f243fd47a09ec04d7573">Getting Started</h3>
+<h3 id="getting-started">Getting Started</h3>
 
 <p>I personally am running <a href="https://www.archlinux.org/">Arch Linux</a>, but qemu/KVM can be installed on any modern Linux distro.  One reason I love Arch is the <a href="https://wiki.archlinux.org/">Arch wiki</a>.  In my opionin (and many others), there is no better resource for information on Linux, and Linux operating systems.</p>
 
@@ -390,7 +405,7 @@ $ newgrp kvm
 
 <p><em>Note: This only works for the current instance of your user.  This means if you switch users or close your terminal it will revert back.  To perminatly change your inclusion into the groups you will need to log out and back in</em></p>
 
-<h3 id="getting-the-virtualbox-images:f1a3a9d61180f243fd47a09ec04d7573">Getting the VirtualBox images</h3>
+<h3 id="getting-the-virtualbox-images">Getting the VirtualBox images</h3>
 
 <p>When building websites, you always want to confirm that all aspects of your site will work on all major browsers.  This includes Google Chrome, FireFox, and Internet Explorer/Edge.  While the frst 2 are easily installed on Linux, IE/Edge are only available on Windows.  But Microsoft has made VirtualBox images availale to test multiple versions of IE and Edge on Linux. Yes I said Microsoft, now pick your jaw off of the floor.</p>
 
@@ -418,7 +433,7 @@ $ newgrp kvm
 
 <p>Now you will see 2 new files in your directory: IE11 - Win8.1-disk1.vmdk, and IE11 - Win8.1.ovf. Finally we found our vmdk file</p>
 
-<h3 id="converting-vmdk-to-qcow2:f1a3a9d61180f243fd47a09ec04d7573">Converting VMDK to qcow2</h3>
+<h3 id="converting-vmdk-to-qcow2">Converting VMDK to qcow2</h3>
 
 <p>Since I don&rsquo;t know of a way to run vmdk files on qemu we need to convert it. Good thing there is a built in conversion tool.</p>
 
@@ -438,7 +453,7 @@ $ newgrp kvm
 
 <p>And that&rsquo;s it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert&hellip;</p>
 
-<h3 id="running-your-new-qcow2-image:f1a3a9d61180f243fd47a09ec04d7573">Running your new qcow2 image</h3>
+<h3 id="running-your-new-qcow2-image">Running your new qcow2 image</h3>
 
 <p>To run your new qcow2 image just run:</p>
 
@@ -483,7 +498,7 @@ $ newgrp kvm
 
     
     
-        <li><a href='/categories/qemu'>qemu</a></li>
+        <li><a href='/categoriesqemu'>qemu</a></li>
     
 </ul>
 
@@ -691,7 +706,7 @@ $ newgrp kvm
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/qml/">qml</a>
+                                <a href="/categories/qemu/">qemu</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>
@@ -700,7 +715,7 @@ $ newgrp kvm
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/qemu/">qemu</a>
+                                <a href="/categories/qml/">qml</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>

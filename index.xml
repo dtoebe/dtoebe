@@ -6,8 +6,45 @@
     <description>Recent content on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 May 2016 02:07:24 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 21 Sep 2016 08:16:41 -0700</lastBuildDate>
     <atom:link href="http://dtoebe.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About Me</title>
+      <link>http://dtoebe.com/about/</link>
+      <pubDate>Wed, 21 Sep 2016 08:16:41 -0700</pubDate>
+      
+      <guid>http://dtoebe.com/about/</guid>
+      <description>
+
+&lt;p&gt;Hi my name is Daniel Toebe, I&amp;rsquo;m an Cancer. I enjoy long windy walks in the desert&amp;hellip; Ha ha, but seriously&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;It has taken me a while to come up with this page. Funny since most of my professional career I&amp;rsquo;ve been a salesman, and this page is meant to sell myself, of sorts.  While sales was fun, I did meet interesting people, but my true passion is software development.&lt;/p&gt;
+
+&lt;h3 id=&#34;programming&#34;&gt;Programming&lt;/h3&gt;
+
+&lt;p&gt;Software development is one of those things that constantly keeps you on your toes, challenges you in different ways about every minute.  You can approach the same problem in so many different ways with different tool sets.&lt;/p&gt;
+
+&lt;p&gt;As you can see I am a very passionate, and self taught programmer.  I am proficient in quite a few languages and frameworks, such as: Golang, NodeJS/ES6, Electron, JavaScript, the React framework, Python, Flask, Kivy, C++, Qt frameworks, Java, and Rust. Lately in my free time I have been working with Scala.&lt;/p&gt;
+
+&lt;h3 id=&#34;linux&#34;&gt;Linux&lt;/h3&gt;
+
+&lt;p&gt;On the other side of things I love working in a Linux environment. I use many various distros for particular needs.  For my daily desktop I will use Arch Linux, or OpenSUSE Tumbleweed, either with a Plasma 5 desktop. I prefer these distros on my desktop because I like the rolling-release model so I never have to do major version updates, and I like having the latest packages for my dev environments.  On the server side I look for the right tool (distro) for the job.  Whether it be Debian, Ubuntu, or CentOS.  I can mange packages with Apt, Yum, and the newer DNF.&lt;/p&gt;
+
+&lt;h3 id=&#34;personal&#34;&gt;Personal&lt;/h3&gt;
+
+&lt;p&gt;When I am not glued to my computer I really do love the outdoors.  I grew up outside a small town, where my closest neighbors were at least a half a mile way from me.  I love to go out and explore.  I have seen some of the most remote beautiful places in Arizona, remote ancient ruins, and the sunsets&amp;hellip; Wow the Arizona sunsets are amazing.&lt;/p&gt;
+
+&lt;p&gt;Well thats about it. If you got this far then you either find me fascinating, or you are really bored.  Ha ha.. Well I am looking for new opportunities, and challenges in software engineering.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Shoot me an email dtoebe [at] gmail.com &lt;em&gt;(sorry trying to reduce spam)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Follow me on twitter: &lt;a href=&#34;https://twitter.com/dtoebe&#34;&gt;@dtoebe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Connect with me on Linkedin: &lt;a href=&#34;https://www.linkedin.com/in/daniel-toebe-b1533327&#34;&gt;Daniel Toebe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Or check out what I am working on on &lt;a href=&#34;https://github.com/dtoebe&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Write a simple Markdown editor with Go-QML</title>
@@ -17,13 +54,13 @@
       <guid>http://dtoebe.com/post/simple_markdown_editor_in_go-qml/</guid>
       <description>
 
-&lt;h3 id=&#34;background:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Background:&lt;/h3&gt;
+&lt;h3 id=&#34;background&#34;&gt;Background:&lt;/h3&gt;
 
 &lt;p&gt;Golang has really become my go to language, and has replaced Python as my main scripting language.  I love how easy it is to write. I love haw fast it is to compile, and is a compiled language, so I can just distribute a single binary instead of hoping that there is a Python run-time install (I.E. small container images).  And with distributing these binaries, I can easily cross compile Golang to different architectures, and OS&amp;rsquo;s without installing a cumbersome tool-chain.&lt;/p&gt;
 
 &lt;p&gt;One big downside to the Go language is that it has very little GUI support, and really doesn&amp;rsquo;t come with default support what so ever.  Well there are a couple pretty good 3rd party GUI libs such as &lt;a href=&#34;https://mattn.github.io/go-gtk/&#34;&gt;Go-GTK&lt;/a&gt;, &lt;a href=&#34;https://github.com/andlabs/ui&#34;&gt;Go-UI&lt;/a&gt;, and finally &lt;a href=&#34;https://github.com/go-qml/qml&#34;&gt;Go-QML&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;about-qml:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;About QML&lt;/h3&gt;
+&lt;h3 id=&#34;about-qml&#34;&gt;About QML&lt;/h3&gt;
 
 &lt;p&gt;I have played with QML and Qt Widgets with C++ in the past, and really enjoyed it.  QML especially is nice.  Instead of the classic XML style syntax that you find in WPF or even Qt Widgets UI files, QML uses a more JavaScript/JSON like syntax.  While I did just say JSON, it uses object like syntax instead of a string like syntax (meaning you won&amp;rsquo;t have a bunch of double quotes).&lt;/p&gt;
 
@@ -31,7 +68,7 @@
 
 &lt;p&gt;Combine that with the speed and power of the Go language, and you can create fast GUI applications easily for a lot of architectures and OS&amp;rsquo;s.&lt;/p&gt;
 
-&lt;h3 id=&#34;getting-started:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Getting Started&lt;/h3&gt;
+&lt;h3 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h3&gt;
 
 &lt;p&gt;To start understand I am using &lt;a href=&#34;https://www.archlinux.org&#34;&gt;Arch Linux&lt;/a&gt;, and all the packages I install through the system package manager will be for that system.  All the system packages will be for Go-QML, with the exception is for clipboard go lib, on Linux you will need either xclip or xsel.&lt;/p&gt;
 
@@ -84,7 +121,7 @@
 &lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;$ go get -u -v github.com/atotto/clipboard
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;references:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;References&lt;/h3&gt;
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
 
 &lt;p&gt;I used a couple references in figuring out how to write this program.&lt;/p&gt;
 
@@ -96,7 +133,7 @@
 &lt;li&gt;Finally a simple &lt;em&gt;GO-QML&lt;/em&gt; Tutorial, which the most important part is at the bottom of the tut, and we will reference next: &lt;a href=&#34;https://golog.co/blog/article/Using_Go_with_QML_part_1&#34;&gt;https://golog.co/blog/article/Using_Go_with_QML_part_1&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;golang-version-issues:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Golang version issues&lt;/h3&gt;
+&lt;h3 id=&#34;golang-version-issues&#34;&gt;Golang version issues&lt;/h3&gt;
 
 &lt;p&gt;At the time of writing I am using the most recent version of the Go language (1.6.2).  Changes in cgo in 1.6 has made it so &lt;em&gt;GO-QML&lt;/em&gt; won&amp;rsquo;t compile when the QML code tries communicating back to Go.  The work around referenced in the the tut I referenced at the end of the last section says to:&lt;/p&gt;
 
@@ -107,7 +144,7 @@
 
 &lt;p&gt;You shouldn&amp;rsquo;t have this issue with Go language version =&amp;lt; 1.5.x&lt;/p&gt;
 
-&lt;h3 id=&#34;making-your-directories:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Making your directories&lt;/h3&gt;
+&lt;h3 id=&#34;making-your-directories&#34;&gt;Making your directories&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;rsquo;s go to your &lt;em&gt;$GOPATH/src&lt;/em&gt; dir, and create your directories. &lt;em&gt;Note: I prefer to have my GUI files in their own sub-dir in the project no matter how small the project is.&lt;/em&gt;&lt;/p&gt;
 
@@ -118,7 +155,7 @@
 
 &lt;p&gt;Finally we can open up your favorite text editor and write some code!&lt;/p&gt;
 
-&lt;h3 id=&#34;to-the-code:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;To the CODE&lt;/h3&gt;
+&lt;h3 id=&#34;to-the-code&#34;&gt;To the CODE&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;
 // main.go
@@ -217,7 +254,8 @@ ApplicationWindow { //The base entity so we can set a toolbar later and the layo
 
 &lt;ul&gt;
 &lt;li&gt;We set the TextArea id in the Markdown text area as mdarea&lt;/li&gt;
-&lt;li&gt;And I use dot syntax to reference the text parameter&lt;/li&gt;
+&lt;li&gt;And I use dot syntax to reference the text parameter
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;//assets/main.qml
@@ -458,7 +496,7 @@ func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer t
 
 &lt;p&gt;This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.&lt;/p&gt;
 
-&lt;h3 id=&#34;some-background:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Some Background&lt;/h3&gt;
+&lt;h3 id=&#34;some-background&#34;&gt;Some Background&lt;/h3&gt;
 
 &lt;p&gt;VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.&lt;/p&gt;
 
@@ -468,7 +506,7 @@ func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer t
 
 &lt;p&gt;I really don&amp;rsquo;t manage virtual-machines on a day to day basis, so I never really rememeber every step on what to do.  This post is to not only help you learn how to convert VMDK to qcow2, but give me a reference to look back on.&lt;/p&gt;
 
-&lt;h3 id=&#34;getting-started:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Getting Started&lt;/h3&gt;
+&lt;h3 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h3&gt;
 
 &lt;p&gt;I personally am running &lt;a href=&#34;https://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt;, but qemu/KVM can be installed on any modern Linux distro.  One reason I love Arch is the &lt;a href=&#34;https://wiki.archlinux.org/&#34;&gt;Arch wiki&lt;/a&gt;.  In my opionin (and many others), there is no better resource for information on Linux, and Linux operating systems.&lt;/p&gt;
 
@@ -497,7 +535,7 @@ $ newgrp kvm
 
 &lt;p&gt;&lt;em&gt;Note: This only works for the current instance of your user.  This means if you switch users or close your terminal it will revert back.  To perminatly change your inclusion into the groups you will need to log out and back in&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;getting-the-virtualbox-images:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Getting the VirtualBox images&lt;/h3&gt;
+&lt;h3 id=&#34;getting-the-virtualbox-images&#34;&gt;Getting the VirtualBox images&lt;/h3&gt;
 
 &lt;p&gt;When building websites, you always want to confirm that all aspects of your site will work on all major browsers.  This includes Google Chrome, FireFox, and Internet Explorer/Edge.  While the frst 2 are easily installed on Linux, IE/Edge are only available on Windows.  But Microsoft has made VirtualBox images availale to test multiple versions of IE and Edge on Linux. Yes I said Microsoft, now pick your jaw off of the floor.&lt;/p&gt;
 
@@ -525,7 +563,7 @@ $ newgrp kvm
 
 &lt;p&gt;Now you will see 2 new files in your directory: IE11 - Win8.1-disk1.vmdk, and IE11 - Win8.1.ovf. Finally we found our vmdk file&lt;/p&gt;
 
-&lt;h3 id=&#34;converting-vmdk-to-qcow2:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Converting VMDK to qcow2&lt;/h3&gt;
+&lt;h3 id=&#34;converting-vmdk-to-qcow2&#34;&gt;Converting VMDK to qcow2&lt;/h3&gt;
 
 &lt;p&gt;Since I don&amp;rsquo;t know of a way to run vmdk files on qemu we need to convert it. Good thing there is a built in conversion tool.&lt;/p&gt;
 
@@ -545,7 +583,7 @@ $ newgrp kvm
 
 &lt;p&gt;And that&amp;rsquo;s it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert&amp;hellip;&lt;/p&gt;
 
-&lt;h3 id=&#34;running-your-new-qcow2-image:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Running your new qcow2 image&lt;/h3&gt;
+&lt;h3 id=&#34;running-your-new-qcow2-image&#34;&gt;Running your new qcow2 image&lt;/h3&gt;
 
 &lt;p&gt;To run your new qcow2 image just run:&lt;/p&gt;
 

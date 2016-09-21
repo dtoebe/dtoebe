@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Qcow2 on dtoebe.com</title>
+    <title>qcow2 on dtoebe.com</title>
     <link>http://dtoebe.com/tags/qcow2/</link>
-    <description>Recent content in Qcow2 on dtoebe.com</description>
+    <description>Recent content in qcow2 on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 15 May 2016 01:43:50 -0700</lastBuildDate>
@@ -19,7 +19,7 @@
 
 &lt;p&gt;This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.&lt;/p&gt;
 
-&lt;h3 id=&#34;some-background:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Some Background&lt;/h3&gt;
+&lt;h3 id=&#34;some-background&#34;&gt;Some Background&lt;/h3&gt;
 
 &lt;p&gt;VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.&lt;/p&gt;
 
@@ -29,7 +29,7 @@
 
 &lt;p&gt;I really don&amp;rsquo;t manage virtual-machines on a day to day basis, so I never really rememeber every step on what to do.  This post is to not only help you learn how to convert VMDK to qcow2, but give me a reference to look back on.&lt;/p&gt;
 
-&lt;h3 id=&#34;getting-started:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Getting Started&lt;/h3&gt;
+&lt;h3 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h3&gt;
 
 &lt;p&gt;I personally am running &lt;a href=&#34;https://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt;, but qemu/KVM can be installed on any modern Linux distro.  One reason I love Arch is the &lt;a href=&#34;https://wiki.archlinux.org/&#34;&gt;Arch wiki&lt;/a&gt;.  In my opionin (and many others), there is no better resource for information on Linux, and Linux operating systems.&lt;/p&gt;
 
@@ -58,7 +58,7 @@ $ newgrp kvm
 
 &lt;p&gt;&lt;em&gt;Note: This only works for the current instance of your user.  This means if you switch users or close your terminal it will revert back.  To perminatly change your inclusion into the groups you will need to log out and back in&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;getting-the-virtualbox-images:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Getting the VirtualBox images&lt;/h3&gt;
+&lt;h3 id=&#34;getting-the-virtualbox-images&#34;&gt;Getting the VirtualBox images&lt;/h3&gt;
 
 &lt;p&gt;When building websites, you always want to confirm that all aspects of your site will work on all major browsers.  This includes Google Chrome, FireFox, and Internet Explorer/Edge.  While the frst 2 are easily installed on Linux, IE/Edge are only available on Windows.  But Microsoft has made VirtualBox images availale to test multiple versions of IE and Edge on Linux. Yes I said Microsoft, now pick your jaw off of the floor.&lt;/p&gt;
 
@@ -86,7 +86,7 @@ $ newgrp kvm
 
 &lt;p&gt;Now you will see 2 new files in your directory: IE11 - Win8.1-disk1.vmdk, and IE11 - Win8.1.ovf. Finally we found our vmdk file&lt;/p&gt;
 
-&lt;h3 id=&#34;converting-vmdk-to-qcow2:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Converting VMDK to qcow2&lt;/h3&gt;
+&lt;h3 id=&#34;converting-vmdk-to-qcow2&#34;&gt;Converting VMDK to qcow2&lt;/h3&gt;
 
 &lt;p&gt;Since I don&amp;rsquo;t know of a way to run vmdk files on qemu we need to convert it. Good thing there is a built in conversion tool.&lt;/p&gt;
 
@@ -106,7 +106,7 @@ $ newgrp kvm
 
 &lt;p&gt;And that&amp;rsquo;s it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert&amp;hellip;&lt;/p&gt;
 
-&lt;h3 id=&#34;running-your-new-qcow2-image:f1a3a9d61180f243fd47a09ec04d7573&#34;&gt;Running your new qcow2 image&lt;/h3&gt;
+&lt;h3 id=&#34;running-your-new-qcow2-image&#34;&gt;Running your new qcow2 image&lt;/h3&gt;
 
 &lt;p&gt;To run your new qcow2 image just run:&lt;/p&gt;
 

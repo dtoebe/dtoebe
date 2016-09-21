@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go on dtoebe.com</title>
+    <title>go on dtoebe.com</title>
     <link>http://dtoebe.com/tags/go/</link>
-    <description>Recent content in Go on dtoebe.com</description>
+    <description>Recent content in go on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 16 May 2016 02:07:24 -0700</lastBuildDate>
@@ -17,13 +17,13 @@
       <guid>http://dtoebe.com/post/simple_markdown_editor_in_go-qml/</guid>
       <description>
 
-&lt;h3 id=&#34;background:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Background:&lt;/h3&gt;
+&lt;h3 id=&#34;background&#34;&gt;Background:&lt;/h3&gt;
 
 &lt;p&gt;Golang has really become my go to language, and has replaced Python as my main scripting language.  I love how easy it is to write. I love haw fast it is to compile, and is a compiled language, so I can just distribute a single binary instead of hoping that there is a Python run-time install (I.E. small container images).  And with distributing these binaries, I can easily cross compile Golang to different architectures, and OS&amp;rsquo;s without installing a cumbersome tool-chain.&lt;/p&gt;
 
 &lt;p&gt;One big downside to the Go language is that it has very little GUI support, and really doesn&amp;rsquo;t come with default support what so ever.  Well there are a couple pretty good 3rd party GUI libs such as &lt;a href=&#34;https://mattn.github.io/go-gtk/&#34;&gt;Go-GTK&lt;/a&gt;, &lt;a href=&#34;https://github.com/andlabs/ui&#34;&gt;Go-UI&lt;/a&gt;, and finally &lt;a href=&#34;https://github.com/go-qml/qml&#34;&gt;Go-QML&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;about-qml:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;About QML&lt;/h3&gt;
+&lt;h3 id=&#34;about-qml&#34;&gt;About QML&lt;/h3&gt;
 
 &lt;p&gt;I have played with QML and Qt Widgets with C++ in the past, and really enjoyed it.  QML especially is nice.  Instead of the classic XML style syntax that you find in WPF or even Qt Widgets UI files, QML uses a more JavaScript/JSON like syntax.  While I did just say JSON, it uses object like syntax instead of a string like syntax (meaning you won&amp;rsquo;t have a bunch of double quotes).&lt;/p&gt;
 
@@ -31,7 +31,7 @@
 
 &lt;p&gt;Combine that with the speed and power of the Go language, and you can create fast GUI applications easily for a lot of architectures and OS&amp;rsquo;s.&lt;/p&gt;
 
-&lt;h3 id=&#34;getting-started:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Getting Started&lt;/h3&gt;
+&lt;h3 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h3&gt;
 
 &lt;p&gt;To start understand I am using &lt;a href=&#34;https://www.archlinux.org&#34;&gt;Arch Linux&lt;/a&gt;, and all the packages I install through the system package manager will be for that system.  All the system packages will be for Go-QML, with the exception is for clipboard go lib, on Linux you will need either xclip or xsel.&lt;/p&gt;
 
@@ -84,7 +84,7 @@
 &lt;pre&gt;&lt;code class=&#34;language-Shell&#34;&gt;$ go get -u -v github.com/atotto/clipboard
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;references:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;References&lt;/h3&gt;
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
 
 &lt;p&gt;I used a couple references in figuring out how to write this program.&lt;/p&gt;
 
@@ -96,7 +96,7 @@
 &lt;li&gt;Finally a simple &lt;em&gt;GO-QML&lt;/em&gt; Tutorial, which the most important part is at the bottom of the tut, and we will reference next: &lt;a href=&#34;https://golog.co/blog/article/Using_Go_with_QML_part_1&#34;&gt;https://golog.co/blog/article/Using_Go_with_QML_part_1&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;golang-version-issues:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Golang version issues&lt;/h3&gt;
+&lt;h3 id=&#34;golang-version-issues&#34;&gt;Golang version issues&lt;/h3&gt;
 
 &lt;p&gt;At the time of writing I am using the most recent version of the Go language (1.6.2).  Changes in cgo in 1.6 has made it so &lt;em&gt;GO-QML&lt;/em&gt; won&amp;rsquo;t compile when the QML code tries communicating back to Go.  The work around referenced in the the tut I referenced at the end of the last section says to:&lt;/p&gt;
 
@@ -107,7 +107,7 @@
 
 &lt;p&gt;You shouldn&amp;rsquo;t have this issue with Go language version =&amp;lt; 1.5.x&lt;/p&gt;
 
-&lt;h3 id=&#34;making-your-directories:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;Making your directories&lt;/h3&gt;
+&lt;h3 id=&#34;making-your-directories&#34;&gt;Making your directories&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;rsquo;s go to your &lt;em&gt;$GOPATH/src&lt;/em&gt; dir, and create your directories. &lt;em&gt;Note: I prefer to have my GUI files in their own sub-dir in the project no matter how small the project is.&lt;/em&gt;&lt;/p&gt;
 
@@ -118,7 +118,7 @@
 
 &lt;p&gt;Finally we can open up your favorite text editor and write some code!&lt;/p&gt;
 
-&lt;h3 id=&#34;to-the-code:bfd893ecf5d2fc7cfe7b68085e2f26c0&#34;&gt;To the CODE&lt;/h3&gt;
+&lt;h3 id=&#34;to-the-code&#34;&gt;To the CODE&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;
 // main.go
@@ -217,7 +217,8 @@ ApplicationWindow { //The base entity so we can set a toolbar later and the layo
 
 &lt;ul&gt;
 &lt;li&gt;We set the TextArea id in the Markdown text area as mdarea&lt;/li&gt;
-&lt;li&gt;And I use dot syntax to reference the text parameter&lt;/li&gt;
+&lt;li&gt;And I use dot syntax to reference the text parameter
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;//assets/main.qml

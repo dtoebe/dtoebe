@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.16" />
         
 
 
@@ -28,7 +28,7 @@
 <meta property="og:url" content="http://dtoebe.com/" />
 
 
-
+<meta property="og:updated_time" content="2016-09-21T08:16:41-07:00"/>
 
 
 
@@ -95,15 +95,21 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/post/">
+                    <a href="/post">
                         
                             <i class="fa fa-newspaper-o">&nbsp;</i>Blog
                     </a>
                 </li>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About Me
                     </a>
                 </li>
             
@@ -146,7 +152,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/post/">
+                        <a href="/post">
                             <h3>
                                 
                                     <i class="fa fa-newspaper-o">&nbsp;</i>
@@ -157,10 +163,19 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                 Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About Me
                             </h3>
                         </a>
                     </li>
@@ -275,13 +290,13 @@ ga('send', 'pageview');
     <div id="content">
         
 
-<h3 id="background:bfd893ecf5d2fc7cfe7b68085e2f26c0">Background:</h3>
+<h3 id="background">Background:</h3>
 
 <p>Golang has really become my go to language, and has replaced Python as my main scripting language.  I love how easy it is to write. I love haw fast it is to compile, and is a compiled language, so I can just distribute a single binary instead of hoping that there is a Python run-time install (I.E. small container images).  And with distributing these binaries, I can easily cross compile Golang to different architectures, and OS&rsquo;s without installing a cumbersome tool-chain.</p>
 
 <p>One big downside to the Go language is that it has very little GUI support, and really doesn&rsquo;t come with default support what so ever.  Well there are a couple pretty good 3rd party GUI libs such as <a href="https://mattn.github.io/go-gtk/">Go-GTK</a>, <a href="https://github.com/andlabs/ui">Go-UI</a>, and finally <a href="https://github.com/go-qml/qml">Go-QML</a>.</p>
 
-<h3 id="about-qml:bfd893ecf5d2fc7cfe7b68085e2f26c0">About QML</h3>
+<h3 id="about-qml">About QML</h3>
 
 <p>I have played with QML and Qt Widgets with C++ in the past, and really enjoyed it.  QML especially is nice.  Instead of the classic XML style syntax that you find in WPF or even Qt Widgets UI files, QML uses a more JavaScript/JSON like syntax.  While I did just say JSON, it uses object like syntax instead of a string like syntax (meaning you won&rsquo;t have a bunch of double quotes).</p>
 
@@ -289,7 +304,7 @@ ga('send', 'pageview');
 
 <p>Combine that with the speed and power of the Go language, and you can create fast GUI applications easily for a lot of architectures and OS&rsquo;s.</p>
 
-<h3 id="getting-started:bfd893ecf5d2fc7cfe7b68085e2f26c0">Getting Started</h3>
+<h3 id="getting-started">Getting Started</h3>
 
 <p>To start understand I am using <a href="https://www.archlinux.org">Arch Linux</a>, and all the packages I install through the system package manager will be for that system.  All the system packages will be for Go-QML, with the exception is for clipboard go lib, on Linux you will need either xclip or xsel.</p>
 
@@ -342,7 +357,7 @@ ga('send', 'pageview');
 <pre><code class="language-Shell">$ go get -u -v github.com/atotto/clipboard
 </code></pre>
 
-<h3 id="references:bfd893ecf5d2fc7cfe7b68085e2f26c0">References</h3>
+<h3 id="references">References</h3>
 
 <p>I used a couple references in figuring out how to write this program.</p>
 
@@ -354,7 +369,7 @@ ga('send', 'pageview');
 <li>Finally a simple <em>GO-QML</em> Tutorial, which the most important part is at the bottom of the tut, and we will reference next: <a href="https://golog.co/blog/article/Using_Go_with_QML_part_1">https://golog.co/blog/article/Using_Go_with_QML_part_1</a></li>
 </ul>
 
-<h3 id="golang-version-issues:bfd893ecf5d2fc7cfe7b68085e2f26c0">Golang version issues</h3>
+<h3 id="golang-version-issues">Golang version issues</h3>
 
 <p>At the time of writing I am using the most recent version of the Go language (1.6.2).  Changes in cgo in 1.6 has made it so <em>GO-QML</em> won&rsquo;t compile when the QML code tries communicating back to Go.  The work around referenced in the the tut I referenced at the end of the last section says to:</p>
 
@@ -365,7 +380,7 @@ ga('send', 'pageview');
 
 <p>You shouldn&rsquo;t have this issue with Go language version =&lt; 1.5.x</p>
 
-<h3 id="making-your-directories:bfd893ecf5d2fc7cfe7b68085e2f26c0">Making your directories</h3>
+<h3 id="making-your-directories">Making your directories</h3>
 
 <p>Let&rsquo;s go to your <em>$GOPATH/src</em> dir, and create your directories. <em>Note: I prefer to have my GUI files in their own sub-dir in the project no matter how small the project is.</em></p>
 
@@ -376,7 +391,7 @@ ga('send', 'pageview');
 
 <p>Finally we can open up your favorite text editor and write some code!</p>
 
-<h3 id="to-the-code:bfd893ecf5d2fc7cfe7b68085e2f26c0">To the CODE</h3>
+<h3 id="to-the-code">To the CODE</h3>
 
 <pre><code class="language-Go">
 // main.go
@@ -475,7 +490,8 @@ ApplicationWindow { //The base entity so we can set a toolbar later and the layo
 
 <ul>
 <li>We set the TextArea id in the Markdown text area as mdarea</li>
-<li>And I use dot syntax to reference the text parameter</li>
+<li>And I use dot syntax to reference the text parameter
+<br /></li>
 </ul>
 
 <pre><code class="language-JavaScript">//assets/main.qml
@@ -732,9 +748,9 @@ func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer t
 
     
     
-        <li><a href='/categories/golang'>golang</a></li>
+        <li><a href='/categoriesgolang'>golang</a></li>
     
-        <li><a href='/categories/qml'>qml</a></li>
+        <li><a href='/categoriesqml'>qml</a></li>
     
 </ul>
 
@@ -1001,7 +1017,7 @@ func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer t
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/qml/">qml</a>
+                                <a href="/categories/qemu/">qemu</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>
@@ -1010,7 +1026,7 @@ func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer t
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/qemu/">qemu</a>
+                                <a href="/categories/qml/">qml</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>
