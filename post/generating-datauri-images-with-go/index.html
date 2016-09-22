@@ -4,7 +4,7 @@
     <head>
         
             
-                <title>Convert VMDK to qcow2</title>
+                <title>Generating Data URI Images with GoLang</title>
             
         
 
@@ -14,6 +14,8 @@
         
 
 
+        
+            <meta name="author" content="Daniel Toebe">
         
         
             
@@ -27,18 +29,18 @@
 
 
 
-<meta name="twitter:title" content="Convert VMDK to qcow2"/>
-<meta name="twitter:description" content="This is my fist post on this blog, so I decided to do something simple. Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window. Some Background VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is."/>
+<meta name="twitter:title" content="Generating Data URI Images with GoLang"/>
+<meta name="twitter:description" content="Background: This post came from one of the challenges set by my local GoLang user group. Problem 2: Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit. A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically."/>
 <meta name="twitter:site" content="@dtoebe"/>
 
 
-        <meta property="og:title" content="Convert VMDK to qcow2" />
-<meta property="og:description" content="This is my fist post on this blog, so I decided to do something simple. Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window. Some Background VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is." />
+        <meta property="og:title" content="Generating Data URI Images with GoLang" />
+<meta property="og:description" content="Background: This post came from one of the challenges set by my local GoLang user group. Problem 2: Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit. A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://dtoebe.com/post/convert_vmdk_to_qcow2/" />
+<meta property="og:url" content="http://dtoebe.com/post/generating-datauri-images-with-go/" />
 
 
-<meta property="og:updated_time" content="2016-05-15T01:43:50-07:00"/>
+<meta property="og:updated_time" content="2016-09-21T00:27:52-07:00"/>
 
 
 
@@ -50,12 +52,12 @@
 
 
         
-<meta itemprop="name" content="Convert VMDK to qcow2">
-<meta itemprop="description" content="This is my fist post on this blog, so I decided to do something simple. Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window. Some Background VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.">
+<meta itemprop="name" content="Generating Data URI Images with GoLang">
+<meta itemprop="description" content="Background: This post came from one of the challenges set by my local GoLang user group. Problem 2: Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit. A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically.">
 
 
-<meta itemprop="dateModified" content="2016-05-15T01:43:50-07:00" />
-<meta itemprop="wordCount" content="1004">
+<meta itemprop="dateModified" content="2016-09-21T00:27:52-07:00" />
+<meta itemprop="wordCount" content="956">
 
 
 
@@ -266,43 +268,43 @@ ga('send', 'pageview');
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&text=Convert%20VMDK%20to%20qcow2&via=dtoebe" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&text=Generating%20Data%20URI%20Images%20with%20GoLang&via=dtoebe" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Daniel%20Toebe&body=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -319,7 +321,7 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h1><a href="http://dtoebe.com/post/convert_vmdk_to_qcow2/">Convert VMDK to qcow2</a></h1>
+            <h1><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating Data URI Images with GoLang</a></h1>
             
         
         
@@ -330,9 +332,9 @@ ga('send', 'pageview');
         
 
         <time class="published"
-            datetime='2016-05-15'>
-            May 15, 2016</time>
-        <span class="author"></span>
+            datetime='2016-09-21'>
+            September 21, 2016</time>
+        <span class="author">Daniel Toebe</span>
         
             <p>5 minute read</p>
         
@@ -346,43 +348,43 @@ ga('send', 'pageview');
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&text=Convert%20VMDK%20to%20qcow2&via=dtoebe" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&text=Generating%20Data%20URI%20Images%20with%20GoLang&via=dtoebe" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f&title=Convert%20VMDK%20to%20qcow2" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fdtoebe.com%2fpost%2fconvert_vmdk_to_qcow2%2f" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Daniel%20Toebe&body=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -394,111 +396,160 @@ ga('send', 'pageview');
     <div id="content">
         
 
-<p>This is my fist post on this blog, so I decided to do something simple.  Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window.</p>
+<h3 id="background">Background:</h3>
 
-<h3 id="some-background">Some Background</h3>
+<p>This post came from one of the challenges set by my local <a href="https://www.meetup.com/Golang-Phoenix/events/233826496/">GoLang user group</a>.</p>
 
-<p>VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.</p>
+<blockquote>
+<p>Problem 2:</p>
 
-<p>About 6 months ago I switched to using qemu/KVM, first with <a href="https://wiki.gnome.org/action/show/Apps/Boxes?action=show&amp;redirect=Boxes">Gnome-Boxes</a>, then <a href="https://virt-manager.org/">Virt-Manager</a>. While Gnome-Boxes has a really nice interface, Virt-Manager allows for more detailed configuration of your virtual machine.  So for a while I stuck with Virt-Manager.</p>
+<p>Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit.</p>
+</blockquote>
 
-<p>All that time I prefered to use command-line tools over GUI tools for just about everything I do.  I also hated the overhead another GUI tool creates, especially since running a vm is so heavy anyways.</p>
+<p>A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images.  Most modern browsers can decode data URIs automatically.</p>
 
-<p>I really don&rsquo;t manage virtual-machines on a day to day basis, so I never really rememeber every step on what to do.  This post is to not only help you learn how to convert VMDK to qcow2, but give me a reference to look back on.</p>
+<p>A great post on the basics of data URIs in web development is <a href="https://css-tricks.com/data-uris/">CSS-Tricks Data URI</a>. This is where I first learned about them. Reading that post you will hopefully see the nerd coolness that they are.</p>
 
-<h3 id="getting-started">Getting Started</h3>
+<p>In reality with modern web technologies data URIs are becoming more and more impractical, because in reality they are 20% to 35% larger than their standard counterparts. You could gzip the data and for Go Lang there is a really good package from the New York Times: <a href="https://github.com/NYTimes/gziphandler">gziphandler</a>.</p>
 
-<p>I personally am running <a href="https://www.archlinux.org/">Arch Linux</a>, but qemu/KVM can be installed on any modern Linux distro.  One reason I love Arch is the <a href="https://wiki.archlinux.org/">Arch wiki</a>.  In my opionin (and many others), there is no better resource for information on Linux, and Linux operating systems.</p>
+<p>With that excessive size does come with a bonus. With typical HTTP requests for files such ad HTML, or images require an additional request to retrieve that file. That could be &ldquo;OK&rdquo; for mobile, or some sort of restricted device.</p>
 
-<p>To install qemu/KVM on Arch Linux go to the <a href="https://wiki.archlinux.org/index.php/QEMU">qemu in the wiki</a>.  There you will see the instructions on what you need to install. To start install:</p>
+<p>With a data URI, it can be sent over the request body as a simple string. Once the browser receives the string it will see a prefix:</p>
 
-<pre><code class="language-Shell"># pacman -S qemu
+<pre><code>&quot;data:[&lt;mediatype][;base64],data&quot;
 </code></pre>
 
-<p><em>I would like to point out that when I refrence a shell command, like the one above.  I&rsquo;ll use &ldquo;#&rdquo; at the beginning to refrence a &ldquo;root&rdquo; command. This means you will need to be the root user or if you have &ldquo;sudo&rdquo;, you can prepend the command with sudo.  Also you may see me use &ldquo;$&rdquo;, this will mean you can run the command as your user.</em></p>
+<p><em>Source: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">MDN Data URI</a>  NOTE: The MDN site is one of the best resources for learning client-side web technologies out there. It is VERY thorough.</em></p>
 
-<p>Once I install qemu I add my user to the &ldquo;libvirt&rdquo;, and &ldquo;kvm&rdquo; groups</p>
-
-<pre><code class="language-Shell"># gpasswd -a &lt;your User Name&gt; libvirt
-
-# gpasswd -a &lt;your User Name&gt; kvm
-</code></pre>
-
-<p><em>Replace <your User Name> with your actual user name.</em></p>
-
-<p>You will need to log out and log back in.  <em>Or you could run the following commands</em></p>
-
-<pre><code class="language-Shell">$ newgrp libvirt
-
-$ newgrp kvm
-</code></pre>
-
-<p><em>Note: This only works for the current instance of your user.  This means if you switch users or close your terminal it will revert back.  To perminatly change your inclusion into the groups you will need to log out and back in</em></p>
-
-<h3 id="getting-the-virtualbox-images">Getting the VirtualBox images</h3>
-
-<p>When building websites, you always want to confirm that all aspects of your site will work on all major browsers.  This includes Google Chrome, FireFox, and Internet Explorer/Edge.  While the frst 2 are easily installed on Linux, IE/Edge are only available on Windows.  But Microsoft has made VirtualBox images availale to test multiple versions of IE and Edge on Linux. Yes I said Microsoft, now pick your jaw off of the floor.</p>
-
-<p>Now open your favorite browser and go to the <a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/linux/">MS developer site</a>, and download the IE/Edge version of your choice.  For the purposes of this tutorial I downloaded the IE11 on Win81.</p>
-
-<p>These are LARGE downloads, this one was 5.3GiB.  It took about 30mmin to download.</p>
-
-<p>Once downloaded go to the directory you downloaded it in (most likely ~/Downloads).  Now they are downloaded in .zip format so run:</p>
-
-<pre><code class="language-Shell">$ unzip IE11.Win8.1.For.Windows.VirtualBox.zip
-</code></pre>
-
-<p>This may take a couple minutes because of how large the file zise is.</p>
-
-<p>Once unzipped you will see a new file in your directory: IE11 - Win8.1.ova.  .ova files are just achive files meant to bundle the vmdk file and an ovf file.</p>
-
-<p><em>ovf files are XML template files VirtualBox uses to easily transfer vm settings</em></p>
-
-<p>to un-archive the ova file run:</p>
-
-<pre><code class="language-Shell">$ tar xvf IE11\ -\ Win8.1.ova
-</code></pre>
-
-<p><em>The forward slashes in the above command are space escapes, so your shell knows there is a space in the filename</em></p>
-
-<p>Now you will see 2 new files in your directory: IE11 - Win8.1-disk1.vmdk, and IE11 - Win8.1.ovf. Finally we found our vmdk file</p>
-
-<h3 id="converting-vmdk-to-qcow2">Converting VMDK to qcow2</h3>
-
-<p>Since I don&rsquo;t know of a way to run vmdk files on qemu we need to convert it. Good thing there is a built in conversion tool.</p>
-
-<pre><code class="language-Shell">$ qemu-img convert -f vmdk -O qcow2 IE11\ -\ Win8.1-disk1.vmdk IE11-Win8.1.qcow2
-</code></pre>
-
-<p>Let&rsquo;s break that down:</p>
+<p>As you can see from the Mozilla Developer Network Article you can encode many types of data for the browser.</p>
 
 <ul>
-<li><strong>qemu-img</strong> - is the built-in qemu image manipulation tool</li>
-<li>convert - tells qemu-image that you want to convert one image file, such as .img, or in this case .vmdk files</li>
-<li><strong>-f vmdk</strong> <em>(optional)</em> - This is an optional command (u could leave it out) qemu can auto-detect.  This tells qemu what type of file you are converting from.</li>
-<li><strong>-O qcow2</strong> <em>(Uppercase letter O)</em> - This tells qemu what type of file you will convert to.</li>
-<li><strong>IE11\ -\ Win8.1.vmdk</strong> - Is the file you are converting from.</li>
-<li><strong>IE11-Win8.1.qcow2</strong> <em>(Can be any name you want it)</em> - Is the output file your are converting to.</li>
+<li>Plain Text <code>text/plain</code></li>
+<li>HTML <code>text/html</code></li>
+<li>JPG <code>image/jpg</code></li>
+<li>PNG <code>image/png</code></li>
+<li>GIF <code>image/gif</code></li>
 </ul>
 
-<p>And that&rsquo;s it!  You should see your new IE11-Win8.1.qcow2 file in your folder. Pretty easy to convert&hellip;</p>
+<p>And while dealing with <code>text</code> data types you don&rsquo;t even need to encode it, but <code>binary</code> types, like images, they will need to be encoded.</p>
 
-<h3 id="running-your-new-qcow2-image">Running your new qcow2 image</h3>
+<h3 id="getting-to-the-code">Getting to the code</h3>
 
-<p>To run your new qcow2 image just run:</p>
+<p>With this tutorial we will just focus on creating the data URI string to be sent.  At that point you can send it over some sort of API, or embedded in an HTML template. Also we will only use packages from the <code>std</code> libs.</p>
 
-<pre><code class="language-Shell">$ qemu-system-x86_64 -m 4G -smp 2 --enable-kvm IE11-Win8.1.qcow2
+<p>To simplify things I am going to borrow most of the code for generating images from another one of my favorite sources <a href="https://www.socketloop.com/">SocketLoop</a>. SocketLoop always seems to have the answers for any golang question I have.  Specifically we will be using <a href="https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format">this blog post</a>, a great resource on how to create images in golang.</p>
+
+<p>Here are the imports</p>
+
+<pre><code class="language-Go">
+//main.go
+package main
+
+import (
+    &quot;fmt&quot;
+    &quot;image&quot;
+    &quot;image/color&quot;
+    &quot;image/draw&quot;
+    &quot;image/png&quot;
+    &quot;math/rand&quot;
+    &quot;time&quot;
+    &quot;bytes&quot;
+    &quot;encoding/base64&quot;
+)
+
 </code></pre>
 
-<p>Let&rsquo;s break that down:</p>
+<p>You may be asking why the <code>math/rand</code>, and <code>time</code> packages. That&rsquo;s because per the <a href="https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format">Socket Loop Tutorial</a> we will be generating a randomly generated simple QR-Code like PNG image.</p>
 
-<ul>
-<li><strong>qemu-system-x86_64</strong> - This command launches quemu in x64bit mode (requires x64bit processor).</li>
-<li><strong>-m 4G</strong> - allocates 4 GB of ram to the virtual machine.</li>
-<li><strong>-smp 2</strong> <em>(optional)</em> - Suggests to qemu to use the number refrenced of cores of your CPU to the virtual machine. I say suggests, because you can put 8 on a 4 core machine, and qemu will run, but could lock up your system. It is optional and leaving it out will make the vm run under 1 CPU core.</li>
-<li><strong>&ndash;enable-kvm</strong> <em>(optional)</em> - Enables KVM on your vm to help with preformance.</li>
-<li><strong>IE-Win8.1.qcow2</strong> - is the path to the image you want to run.</li>
-</ul>
+<p>Let&rsquo;s get to the main <code>func</code></p>
+
+<pre><code class="language-Go">//main.go
+package main
+
+import (...)
+
+func main() {
+    // Seed the std random number generator
+    rand.Seed(time.Now().UTC().UnixNano())
+
+    // We will leave out creating the png image file since we
+    // don't need the file
+
+    // Set the bounds of the image basically 100px width / height
+    imgRect := image.Rect(0, 0, 100, 100)
+    // This creates the image in memory, and sets all pixels to a gray value.
+    // And it sets the size based on the Rect we just created
+    img := image.NewGray(imgRect)
+
+    // Ok a lot going on here. Let's start creates a nil mask layer on the image
+    // Tt takes the image we created in memory, and then the bounding Rect
+    // Next we add a reference to a uniform color (white) over the mask
+    // The image.ZP means the mask we are drawing starts at the 0,0 point
+    // draw.Src refrences the source mask
+    draw.Draw(img, img.Bounds(), &amp;image.Uniform{color.White}, image.ZP, draw.Src)
+
+    // These nested loop reference the y,x coordinates.
+    // 100 is reference to the image with / height in pixels
+    // 10 is reference to the size of the random blocks to be generated
+    for y := 0; y &lt; 100; y += 10 {
+        for x := 0; x &lt; 100; x += 10 {
+            // Here we create a color to be set as a black block
+            fill := &amp;image.Uniform{color.Black}
+            // rand.Intn(10) creates a random non-negative number between 0,10
+            // Then checks if it's even
+            if rand.Intn(10)%2 == 0 {
+                fill = &amp;image.Uniform{color.White}
+            }
+            // This draw.Draw takes a new Rect that is 10px,10px and sets
+            // color based on fill
+            draw.Draw(img, image.Rect(x, y, x+10, y+10), fill, image.ZP, draw.Src)
+        }
+    }
+}
+
+</code></pre>
+
+<p>Ok well we now have generated the image in memory now lets get to the fun stuff.</p>
+
+<p>First we need to create a bytes buffer that we can write into and read out to encode into a PNG from the image we created. Then we will take that buffer as a byte slice and output it as a string.</p>
+
+<pre><code class="language-Go">//main.go
+
+...
+
+func main() {
+    ...
+    for ... {...}
+
+    // Here we allocate and create a buffer that can easily be
+    // turned into a []byte
+    out := new(bytes.Buffer)
+
+    // We now encode the image we created to the buffer
+    err := png.Encode(out, img)
+    if err != nil {
+        // Handle errors
+    }
+
+    // This now takes a []byte of the buffer and base64 encodes it to a string
+    // Never needing to create the image file all done in memory
+    base64Img := base64.StdEncoding.EncodeToString(out.Bytes())
+
+    //And now you can see the magic happen.
+    // Go ahead and run it then take the output and copy/paste it in your
+    // browser's URL bar, and you'll see your image.
+    fmt.Println(&quot;data:image/png;base64,&quot;, base64Img)
+}
+
+</code></pre>
+
+<p><img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAAAAABVicqIAAAAt0lEQVR4nOzYsQqFMAyFYZW+/yvrZh0Opyk4JOHPdLm2fBBIk3YcNu7312n/UztmXB75J0BAQNYhK97XtA+1o0+6QECKI2O/un1nV7NAn3SBgBRHZJmryVxtUevo8SAgiZFPgfo+LbcE1/VJFwhIcWT4fj7Dz/zqjGCqBwFJh8geLz+LddGbf590gYAUR8KP8ft3e6Z6EJB0iHyr9108estnqgcBSYcsenz0PODlDgSkBPIEAAD//007Gs0nXd84AAAAAElFTkSuQmCC" alt="base64 Image" /></p>
+
+<p>The image above was generated with this tutorial&hellip; Nerd cool right?</p>
+
+<p>Again without gzipping it typically is larger than its binary counterpart, but does reduce HTTP requests.</p>
+
+<p><strong>Check out the full source code on <a href="https://github.com/dtoebe/datauri-blog-post">GitHub</a></strong></p>
 
     </div>
 
@@ -528,7 +579,7 @@ $ newgrp kvm
 
     
     
-        <li><a href='/categoriesqemu'>qemu</a></li>
+        <li><a href='/categoriesgolang'>golang</a></li>
     
 </ul>
 
@@ -536,10 +587,10 @@ $ newgrp kvm
 </article>
 <ul class="actions pagination">
     
-
-    
         <li><a href="http://dtoebe.com/post/simple_markdown_editor_in_go-qml/"
-                class="button big next">Write a simple Markdown editor with Go-QML</a></li>
+                class="button big previous">Write a simple Markdown editor with Go-QML</a></li>
+    
+
     
 </ul>
 
@@ -550,9 +601,9 @@ $ newgrp kvm
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'dtoebe';
-    var disqus_identifier = 'http:\/\/dtoebe.com\/post\/convert_vmdk_to_qcow2\/';
-    var disqus_title = 'Convert VMDK to qcow2';
-    var disqus_url = 'http:\/\/dtoebe.com\/post\/convert_vmdk_to_qcow2\/';
+    var disqus_identifier = 'http:\/\/dtoebe.com\/post\/generating-datauri-images-with-go\/';
+    var disqus_title = 'Generating Data URI Images with GoLang';
+    var disqus_url = 'http:\/\/dtoebe.com\/post\/generating-datauri-images-with-go\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

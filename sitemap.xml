@@ -22,6 +22,11 @@
   </url>
   
   <url>
+    <loc>http://dtoebe.com/post/generating-datauri-images-with-go/</loc>
+    <lastmod>2016-09-21T00:27:52-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://dtoebe.com/post/simple_markdown_editor_in_go-qml/</loc>
     <lastmod>2016-05-16T02:07:24-07:00</lastmod>
   </url>

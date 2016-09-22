@@ -6,8 +6,173 @@
     <description>Recent content in golang on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 May 2016 02:07:24 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 21 Sep 2016 00:27:52 -0700</lastBuildDate>
     <atom:link href="http://dtoebe.com/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Generating Data URI Images with GoLang</title>
+      <link>http://dtoebe.com/post/generating-datauri-images-with-go/</link>
+      <pubDate>Wed, 21 Sep 2016 00:27:52 -0700</pubDate>
+      
+      <guid>http://dtoebe.com/post/generating-datauri-images-with-go/</guid>
+      <description>
+
+&lt;h3 id=&#34;background&#34;&gt;Background:&lt;/h3&gt;
+
+&lt;p&gt;This post came from one of the challenges set by my local &lt;a href=&#34;https://www.meetup.com/Golang-Phoenix/events/233826496/&#34;&gt;GoLang user group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Problem 2:&lt;/p&gt;
+
+&lt;p&gt;Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images.  Most modern browsers can decode data URIs automatically.&lt;/p&gt;
+
+&lt;p&gt;A great post on the basics of data URIs in web development is &lt;a href=&#34;https://css-tricks.com/data-uris/&#34;&gt;CSS-Tricks Data URI&lt;/a&gt;. This is where I first learned about them. Reading that post you will hopefully see the nerd coolness that they are.&lt;/p&gt;
+
+&lt;p&gt;In reality with modern web technologies data URIs are becoming more and more impractical, because in reality they are 20% to 35% larger than their standard counterparts. You could gzip the data and for Go Lang there is a really good package from the New York Times: &lt;a href=&#34;https://github.com/NYTimes/gziphandler&#34;&gt;gziphandler&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;With that excessive size does come with a bonus. With typical HTTP requests for files such ad HTML, or images require an additional request to retrieve that file. That could be &amp;ldquo;OK&amp;rdquo; for mobile, or some sort of restricted device.&lt;/p&gt;
+
+&lt;p&gt;With a data URI, it can be sent over the request body as a simple string. Once the browser receives the string it will see a prefix:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;data:[&amp;lt;mediatype][;base64],data&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Source: &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs&#34;&gt;MDN Data URI&lt;/a&gt;  NOTE: The MDN site is one of the best resources for learning client-side web technologies out there. It is VERY thorough.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see from the Mozilla Developer Network Article you can encode many types of data for the browser.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Plain Text &lt;code&gt;text/plain&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HTML &lt;code&gt;text/html&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;JPG &lt;code&gt;image/jpg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;PNG &lt;code&gt;image/png&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;GIF &lt;code&gt;image/gif&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And while dealing with &lt;code&gt;text&lt;/code&gt; data types you don&amp;rsquo;t even need to encode it, but &lt;code&gt;binary&lt;/code&gt; types, like images, they will need to be encoded.&lt;/p&gt;
+
+&lt;h3 id=&#34;getting-to-the-code&#34;&gt;Getting to the code&lt;/h3&gt;
+
+&lt;p&gt;With this tutorial we will just focus on creating the data URI string to be sent.  At that point you can send it over some sort of API, or embedded in an HTML template. Also we will only use packages from the &lt;code&gt;std&lt;/code&gt; libs.&lt;/p&gt;
+
+&lt;p&gt;To simplify things I am going to borrow most of the code for generating images from another one of my favorite sources &lt;a href=&#34;https://www.socketloop.com/&#34;&gt;SocketLoop&lt;/a&gt;. SocketLoop always seems to have the answers for any golang question I have.  Specifically we will be using &lt;a href=&#34;https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format&#34;&gt;this blog post&lt;/a&gt;, a great resource on how to create images in golang.&lt;/p&gt;
+
+&lt;p&gt;Here are the imports&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;
+//main.go
+package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;image&amp;quot;
+    &amp;quot;image/color&amp;quot;
+    &amp;quot;image/draw&amp;quot;
+    &amp;quot;image/png&amp;quot;
+    &amp;quot;math/rand&amp;quot;
+    &amp;quot;time&amp;quot;
+    &amp;quot;bytes&amp;quot;
+    &amp;quot;encoding/base64&amp;quot;
+)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may be asking why the &lt;code&gt;math/rand&lt;/code&gt;, and &lt;code&gt;time&lt;/code&gt; packages. That&amp;rsquo;s because per the &lt;a href=&#34;https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format&#34;&gt;Socket Loop Tutorial&lt;/a&gt; we will be generating a randomly generated simple QR-Code like PNG image.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s get to the main &lt;code&gt;func&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
+package main
+
+import (...)
+
+func main() {
+    // Seed the std random number generator
+    rand.Seed(time.Now().UTC().UnixNano())
+
+    // We will leave out creating the png image file since we
+    // don&#39;t need the file
+
+    // Set the bounds of the image basically 100px width / height
+    imgRect := image.Rect(0, 0, 100, 100)
+    // This creates the image in memory, and sets all pixels to a gray value.
+    // And it sets the size based on the Rect we just created
+    img := image.NewGray(imgRect)
+
+    // Ok a lot going on here. Let&#39;s start creates a nil mask layer on the image
+    // Tt takes the image we created in memory, and then the bounding Rect
+    // Next we add a reference to a uniform color (white) over the mask
+    // The image.ZP means the mask we are drawing starts at the 0,0 point
+    // draw.Src refrences the source mask
+    draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{color.White}, image.ZP, draw.Src)
+
+    // These nested loop reference the y,x coordinates.
+    // 100 is reference to the image with / height in pixels
+    // 10 is reference to the size of the random blocks to be generated
+    for y := 0; y &amp;lt; 100; y += 10 {
+        for x := 0; x &amp;lt; 100; x += 10 {
+            // Here we create a color to be set as a black block
+            fill := &amp;amp;image.Uniform{color.Black}
+            // rand.Intn(10) creates a random non-negative number between 0,10
+            // Then checks if it&#39;s even
+            if rand.Intn(10)%2 == 0 {
+                fill = &amp;amp;image.Uniform{color.White}
+            }
+            // This draw.Draw takes a new Rect that is 10px,10px and sets
+            // color based on fill
+            draw.Draw(img, image.Rect(x, y, x+10, y+10), fill, image.ZP, draw.Src)
+        }
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok well we now have generated the image in memory now lets get to the fun stuff.&lt;/p&gt;
+
+&lt;p&gt;First we need to create a bytes buffer that we can write into and read out to encode into a PNG from the image we created. Then we will take that buffer as a byte slice and output it as a string.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
+
+...
+
+func main() {
+    ...
+    for ... {...}
+
+    // Here we allocate and create a buffer that can easily be
+    // turned into a []byte
+    out := new(bytes.Buffer)
+
+    // We now encode the image we created to the buffer
+    err := png.Encode(out, img)
+    if err != nil {
+        // Handle errors
+    }
+
+    // This now takes a []byte of the buffer and base64 encodes it to a string
+    // Never needing to create the image file all done in memory
+    base64Img := base64.StdEncoding.EncodeToString(out.Bytes())
+
+    //And now you can see the magic happen.
+    // Go ahead and run it then take the output and copy/paste it in your
+    // browser&#39;s URL bar, and you&#39;ll see your image.
+    fmt.Println(&amp;quot;data:image/png;base64,&amp;quot;, base64Img)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAAAAABVicqIAAAAt0lEQVR4nOzYsQqFMAyFYZW+/yvrZh0Opyk4JOHPdLm2fBBIk3YcNu7312n/UztmXB75J0BAQNYhK97XtA+1o0+6QECKI2O/un1nV7NAn3SBgBRHZJmryVxtUevo8SAgiZFPgfo+LbcE1/VJFwhIcWT4fj7Dz/zqjGCqBwFJh8geLz+LddGbf590gYAUR8KP8ft3e6Z6EJB0iHyr9108estnqgcBSYcsenz0PODlDgSkBPIEAAD//007Gs0nXd84AAAAAElFTkSuQmCC&#34; alt=&#34;base64 Image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The image above was generated with this tutorial&amp;hellip; Nerd cool right?&lt;/p&gt;
+
+&lt;p&gt;Again without gzipping it typically is larger than its binary counterpart, but does reduce HTTP requests.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Check out the full source code on &lt;a href=&#34;https://github.com/dtoebe/datauri-blog-post&#34;&gt;GitHub&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Write a simple Markdown editor with Go-QML</title>
