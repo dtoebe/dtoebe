@@ -34,6 +34,7 @@ _From: 11-2010 to 9-2016_
 __Sales/IT/Web/Marketing Manager, Mangnum’s, Phoenix Az, 7th Street Union Hills__
 
 _From: 10-2004 to 6-2006; and brought back at: 4-2008 to 11-2010_
+
 - Initially I was brought in to manage sales of high-end wine, beer, spirits, and cigars, but I set up internal network, and POS systems.
 - I had left for a couple years and brought back to again manage Sales/IT during their expansion, as well as set up a web presence.
 - Managing Sales, Networking, Web Development
