@@ -4,7 +4,7 @@
     <head>
         
             
-                <title>Generating Data URI Images with GoLang</title>
+                <title>Generating DataURI Images with Go</title>
             
         
 
@@ -18,9 +18,7 @@
             <meta name="author" content="Daniel Toebe">
         
         
-            
-                <meta name="description" content="Just the ramblings of a passionate programmer and Linux lover">
-            
+            <meta name="description" content="Create DataURI strings in memory with go">
         
 
         
@@ -29,18 +27,18 @@
 
 
 
-<meta name="twitter:title" content="Generating Data URI Images with GoLang"/>
-<meta name="twitter:description" content="Background: This post came from one of the challenges set by my local GoLang user group. Problem 2: Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit. A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically."/>
+<meta name="twitter:title" content="Generating DataURI Images with Go"/>
+<meta name="twitter:description" content="Create DataURI strings in memory with go"/>
 <meta name="twitter:site" content="@dtoebe"/>
 
 
-        <meta property="og:title" content="Generating Data URI Images with GoLang" />
-<meta property="og:description" content="Background: This post came from one of the challenges set by my local GoLang user group. Problem 2: Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit. A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically." />
+        <meta property="og:title" content="Generating DataURI Images with Go" />
+<meta property="og:description" content="Create DataURI strings in memory with go" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://dtoebe.com/post/generating-datauri-images-with-go/" />
 
 
-<meta property="og:updated_time" content="2016-09-21T00:27:52-07:00"/>
+<meta property="og:updated_time" content="2016-09-21T19:04:15-07:00"/>
 
 
 
@@ -52,11 +50,11 @@
 
 
         
-<meta itemprop="name" content="Generating Data URI Images with GoLang">
-<meta itemprop="description" content="Background: This post came from one of the challenges set by my local GoLang user group. Problem 2: Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit. A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically.">
+<meta itemprop="name" content="Generating DataURI Images with Go">
+<meta itemprop="description" content="Create DataURI strings in memory with go">
 
 
-<meta itemprop="dateModified" content="2016-09-21T00:27:52-07:00" />
+<meta itemprop="dateModified" content="2016-09-21T19:04:15-07:00" />
 <meta itemprop="wordCount" content="956">
 
 
@@ -245,11 +243,11 @@ ga('send', 'pageview');
 
                 
                     <li>
-                        <a href="http://dtoebe.com/post/generating-datauri-images-with-go/"><p>Generating Data URI Images with GoLang</p></a>
+                        <a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/"><p>Embed Other Binaries in Golang Binary</p></a>
                     </li>
                 
                     <li>
-                        <a href="http://dtoebe.com/post/simple_markdown_editor_in_go-qml/"><p>Write a simple Markdown editor with Go-QML</p></a>
+                        <a href="http://dtoebe.com/post/generating-datauri-images-with-go/"><p>Generating DataURI Images with Go</p></a>
                     </li>
                 
             </ul>
@@ -268,7 +266,7 @@ ga('send', 'pageview');
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&text=Generating%20Data%20URI%20Images%20with%20GoLang&via=dtoebe" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&text=Generating%20DataURI%20Images%20with%20Go&via=dtoebe" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
@@ -286,19 +284,19 @@ ga('send', 'pageview');
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20DataURI%20Images%20with%20Go" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20DataURI%20Images%20with%20Go" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20DataURI%20Images%20with%20Go" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
@@ -321,9 +319,11 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h1><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating Data URI Images with GoLang</a></h1>
+            <h1><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating DataURI Images with Go</a></h1>
             
         
+        
+            <p>Create DataURI strings in memory with go</p>
         
     </div>
     <div class="meta">
@@ -348,7 +348,7 @@ ga('send', 'pageview');
             
 
 
-<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&text=Generating%20Data%20URI%20Images%20with%20GoLang&via=dtoebe" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&text=Generating%20DataURI%20Images%20with%20Go&via=dtoebe" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
@@ -366,19 +366,19 @@ ga('send', 'pageview');
 </a></li>
 
 
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20DataURI%20Images%20with%20Go" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20DataURI%20Images%20with%20Go" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20Data%20URI%20Images%20with%20GoLang" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fgenerating-datauri-images-with-go%2f&title=Generating%20DataURI%20Images%20with%20Go" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
@@ -396,9 +396,9 @@ ga('send', 'pageview');
     <div id="content">
         
 
-<h3 id="background">Background:</h3>
+<h3 id="background">BACKGROUND:</h3>
 
-<p>This post came from one of the challenges set by my local <a href="https://www.meetup.com/Golang-Phoenix/events/233826496/">GoLang user group</a>.</p>
+<p>This post came from one of the challenges set by my local GoLang user group.</p>
 
 <blockquote>
 <p>Problem 2:</p>
@@ -406,20 +406,20 @@ ga('send', 'pageview');
 <p>Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit.</p>
 </blockquote>
 
-<p>A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images.  Most modern browsers can decode data URIs automatically.</p>
+<p>A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically.</p>
 
 <p>A great post on the basics of data URIs in web development is <a href="https://css-tricks.com/data-uris/">CSS-Tricks Data URI</a>. This is where I first learned about them. Reading that post you will hopefully see the nerd coolness that they are.</p>
 
 <p>In reality with modern web technologies data URIs are becoming more and more impractical, because in reality they are 20% to 35% larger than their standard counterparts. You could gzip the data and for Go Lang there is a really good package from the New York Times: <a href="https://github.com/NYTimes/gziphandler">gziphandler</a>.</p>
 
-<p>With that excessive size does come with a bonus. With typical HTTP requests for files such ad HTML, or images require an additional request to retrieve that file. That could be &ldquo;OK&rdquo; for mobile, or some sort of restricted device.</p>
+<p>With that excessive size does come with a bonus. With typical HTTP requests for files such ad HTML, or images require an additional request to retrieve that file. That could be “OK” for mobile, or some sort of restricted device.</p>
 
 <p>With a data URI, it can be sent over the request body as a simple string. Once the browser receives the string it will see a prefix:</p>
 
-<pre><code>&quot;data:[&lt;mediatype][;base64],data&quot;
+<pre><code>&quot;data:[mediatype][;base64],data&quot;
 </code></pre>
 
-<p><em>Source: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">MDN Data URI</a>  NOTE: The MDN site is one of the best resources for learning client-side web technologies out there. It is VERY thorough.</em></p>
+<p><em>Source: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">MDN Data URI</a>; NOTE: The MDN site is one of the best resources for learning client-side web technologies out there. It is VERY thorough.</em></p>
 
 <p>As you can see from the Mozilla Developer Network Article you can encode many types of data for the browser.</p>
 
@@ -431,18 +431,17 @@ ga('send', 'pageview');
 <li>GIF <code>image/gif</code></li>
 </ul>
 
-<p>And while dealing with <code>text</code> data types you don&rsquo;t even need to encode it, but <code>binary</code> types, like images, they will need to be encoded.</p>
+<p>And while dealing with <code>text</code> data types you don’t even need to encode it, but <code>binary types</code>, like images, they will need to be encoded.</p>
 
-<h3 id="getting-to-the-code">Getting to the code</h3>
+<h3 id="getting-to-the-code">GETTING TO THE CODE</h3>
 
-<p>With this tutorial we will just focus on creating the data URI string to be sent.  At that point you can send it over some sort of API, or embedded in an HTML template. Also we will only use packages from the <code>std</code> libs.</p>
+<p>With this tutorial we will just focus on creating the data URI string to be sent. At that point you can send it over some sort of API, or embedded in an HTML template. Also we will only use packages from the <code>std</code> libs.</p>
 
-<p>To simplify things I am going to borrow most of the code for generating images from another one of my favorite sources <a href="https://www.socketloop.com/">SocketLoop</a>. SocketLoop always seems to have the answers for any golang question I have.  Specifically we will be using <a href="https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format">this blog post</a>, a great resource on how to create images in golang.</p>
+<p>To simplify things I am going to borrow most of the code for generating images from another one of my favorite sources <a href="https://www.socketloop.com/">SocketLoop</a>. SocketLoop always seems to have the answers for any golang question I have. Specifically we will be using this <a href="https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format">blog post</a>, a great resource on how to create images in golang.</p>
 
 <p>Here are the imports</p>
 
-<pre><code class="language-Go">
-//main.go
+<pre><code class="language-Go">//main.go
 package main
 
 import (
@@ -456,12 +455,11 @@ import (
     &quot;bytes&quot;
     &quot;encoding/base64&quot;
 )
-
 </code></pre>
 
-<p>You may be asking why the <code>math/rand</code>, and <code>time</code> packages. That&rsquo;s because per the <a href="https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format">Socket Loop Tutorial</a> we will be generating a randomly generated simple QR-Code like PNG image.</p>
+<p>You may be asking why the <code>math/rand</code>, and <code>time</code> packages. That’s because per the <a href="https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format">Socket Loop Tutorial</a> we will be generating a randomly generated simple QR-Code like PNG image.</p>
 
-<p>Let&rsquo;s get to the main <code>func</code></p>
+<p>Let’s get to the main <code>func</code>:</p>
 
 <pre><code class="language-Go">//main.go
 package main
@@ -485,7 +483,7 @@ func main() {
     // Tt takes the image we created in memory, and then the bounding Rect
     // Next we add a reference to a uniform color (white) over the mask
     // The image.ZP means the mask we are drawing starts at the 0,0 point
-    // draw.Src refrences the source mask
+    // draw.Src reference the source mask
     draw.Draw(img, img.Bounds(), &amp;image.Uniform{color.White}, image.ZP, draw.Src)
 
     // These nested loop reference the y,x coordinates.
@@ -506,7 +504,6 @@ func main() {
         }
     }
 }
-
 </code></pre>
 
 <p>Ok well we now have generated the image in memory now lets get to the fun stuff.</p>
@@ -540,16 +537,15 @@ func main() {
     // browser's URL bar, and you'll see your image.
     fmt.Println(&quot;data:image/png;base64,&quot;, base64Img)
 }
-
 </code></pre>
 
-<p><img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAAAAABVicqIAAAAt0lEQVR4nOzYsQqFMAyFYZW+/yvrZh0Opyk4JOHPdLm2fBBIk3YcNu7312n/UztmXB75J0BAQNYhK97XtA+1o0+6QECKI2O/un1nV7NAn3SBgBRHZJmryVxtUevo8SAgiZFPgfo+LbcE1/VJFwhIcWT4fj7Dz/zqjGCqBwFJh8geLz+LddGbf590gYAUR8KP8ft3e6Z6EJB0iHyr9108estnqgcBSYcsenz0PODlDgSkBPIEAAD//007Gs0nXd84AAAAAElFTkSuQmCC" alt="base64 Image" /></p>
+<p><img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAAAAABVicqIAAAAt0lEQVR4nOzYsQqFMAyFYZW+/yvrZh0Opyk4JOHPdLm2fBBIk3YcNu7312n/UztmXB75J0BAQNYhK97XtA+1o0+6QECKI2O/un1nV7NAn3SBgBRHZJmryVxtUevo8SAgiZFPgfo+LbcE1/VJFwhIcWT4fj7Dz/zqjGCqBwFJh8geLz+LddGbf590gYAUR8KP8ft3e6Z6EJB0iHyr9108estnqgcBSYcsenz0PODlDgSkBPIEAAD//007Gs0nXd84AAAAAElFTkSuQmCC" alt="" /></p>
 
-<p>The image above was generated with this tutorial&hellip; Nerd cool right?</p>
+<p>The image above was generated with this tutorial… Nerd cool right?</p>
 
 <p>Again without gzipping it typically is larger than its binary counterpart, but does reduce HTTP requests.</p>
 
-<p><strong>Check out the full source code on <a href="https://github.com/dtoebe/datauri-blog-post">GitHub</a></strong></p>
+<p>Check out the full source code on <a href="https://github.com/dtoebe/datauri-blog-post">GitHub</a></p>
 
     </div>
 
@@ -592,6 +588,9 @@ func main() {
     
 
     
+        <li><a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/"
+                class="button big next">Embed Other Binaries in Golang Binary</a></li>
+    
 </ul>
 
 
@@ -602,7 +601,7 @@ func main() {
 <script type="text/javascript">
     var disqus_shortname = 'dtoebe';
     var disqus_identifier = 'http:\/\/dtoebe.com\/post\/generating-datauri-images-with-go\/';
-    var disqus_title = 'Generating Data URI Images with GoLang';
+    var disqus_title = 'Generating DataURI Images with Go';
     var disqus_url = 'http:\/\/dtoebe.com\/post\/generating-datauri-images-with-go\/';
 
     (function() {
@@ -643,7 +642,6 @@ func main() {
 
 
 
-<li><a href="//bitbucket.com/dtoebe" target="_blank" title="Bitbucket" class="fa fa-bitbucket"></a></li>
 
 
 
@@ -677,13 +675,8 @@ func main() {
 
 
 
-<li><a href="//linkedin.com/in/daniel-toebe-b1533327" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
 
 
-
-
-
-<li><a href="//stackoverflow.com/users/1371285/daniel-toebe" target="_blank" title="Stack Overflow" class="fa fa-stack-overflow"></a></li>
 
 
 
@@ -702,8 +695,6 @@ func main() {
 <li><a href="//twitter.com/dtoebe" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
 
 
-
-<li><a href="mailto:dtoebe@gmail.com" title="Email" class="fa fa-envelope"></a></li>
 
 
                 
@@ -728,13 +719,13 @@ func main() {
                     <li>
                         <article>
                             <header>
-                                <h3><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating Data URI Images with GoLang</a></h3>
+                                <h3><a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/">Embed Other Binaries in Golang Binary</a></h3>
                                 
                                     
                                 
                                 <time class="published" datetime=
-                                    '2016-09-21'>
-                                    September 21, 2016</time>
+                                    '2016-10-04'>
+                                    October 4, 2016</time>
                             </header>
                         </article>
                     </li>
@@ -742,13 +733,13 @@ func main() {
                     <li>
                         <article>
                             <header>
-                                <h3><a href="http://dtoebe.com/post/simple_markdown_editor_in_go-qml/">Write a simple Markdown editor with Go-QML</a></h3>
+                                <h3><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating DataURI Images with Go</a></h3>
                                 
                                     
                                 
                                 <time class="published" datetime=
-                                    '2016-05-16'>
-                                    May 16, 2016</time>
+                                    '2016-09-21'>
+                                    September 21, 2016</time>
                             </header>
                         </article>
                     </li>
@@ -787,7 +778,7 @@ func main() {
                         <article>
                             <header>
                                 <a href="/categories/golang/">golang</a>
-                                <span style="float:right;">2</span>
+                                <span style="float:right;">3</span>
                             </header>
                         </article>
                     </li>
@@ -816,10 +807,7 @@ func main() {
 
     
         
-        <section id="twitter-feed">
-            <a class="twitter-timeline" data-height="600" href="https://twitter.com/dtoebe">Tweets by dtoebe</a> 
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </section>
+
     
         <section id="footer">
             <ul class="icons">
@@ -830,7 +818,6 @@ func main() {
 
 
 
-<li><a href="//bitbucket.com/dtoebe" target="_blank" title="Bitbucket" class="fa fa-bitbucket"></a></li>
 
 
 
@@ -864,13 +851,8 @@ func main() {
 
 
 
-<li><a href="//linkedin.com/in/daniel-toebe-b1533327" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
 
 
-
-
-
-<li><a href="//stackoverflow.com/users/1371285/daniel-toebe" target="_blank" title="Stack Overflow" class="fa fa-stack-overflow"></a></li>
 
 
 
@@ -889,8 +871,6 @@ func main() {
 <li><a href="//twitter.com/dtoebe" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
 
 
-
-<li><a href="mailto:dtoebe@gmail.com" title="Email" class="fa fa-envelope"></a></li>
 
 
                 

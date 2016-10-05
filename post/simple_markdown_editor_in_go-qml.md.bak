@@ -17,19 +17,19 @@ One big downside to the Go language is that it has very little GUI support, and 
 
 I have played with QML and Qt Widgets with C++ in the past, and really enjoyed it.  QML especially is nice.  Instead of the classic XML style syntax that you find in WPF or even Qt Widgets UI files, QML uses a more JavaScript/JSON like syntax.  While I did just say JSON, it uses object like syntax instead of a string like syntax (meaning you won't have a bunch of double quotes).
 
-Also QML can embed JavaScript directly in line or in a separate .js file to manipulate actions on the UI. Love or hate JavaScript, it is the MOST used language in the world.  The great part about this implantation is that, on the newer versions of Qt/QML, it doesn't run a whole implantation of Chromium in the background, OS less overhead as compared to Electron and NW.js.
+Also QML can embed JavaScript directly inline or in a separate .js file to manipulate actions on the UI. Love or hate JavaScript, it is the MOST used language in the world.  The great part about this implantation is that, on the newer versions of Qt/QML, it doesn't run a whole implantation of Chromium in the background, os less overhead as compared to Electron and NW.js.
 
 Combine that with the speed and power of the Go language, and you can create fast GUI applications easily for a lot of architectures and OS's.
 
 ### Getting Started
 
-To start understand I am using [Arch Linux][arch], and all the packages I install through the system package manager will be for that system.  All the system packages will be for Go-QML, with the exception is for clipboard go lib, on Linux you will need either `xclip` or `xsel`.
+To start understand I am using [Arch Linux][arch], and all the packages I install through the system package manager will be for that system.  All the system packages will be for Go-QML, with the exception is for clipboard go lib, on Linux you will need either xclip or xsel.
 
 ```
 // Ubuntu (based), Debian
 # apt-get install xclip
 
-// Cent-OS, REL
+// Cent-OS, RHEL
 # yum install xclip
 
 // Fedora
@@ -60,7 +60,7 @@ Now that we have the system packages installed now we need to make sure you have
 
 Now that everything is set let's install the 3rd party Golang packages:
 
-``` bash
+```
 $ go get -u -v gopkg.in/qml.v1
 ```
 
@@ -68,7 +68,7 @@ _Any errors that pop up while installing this package means you need to install 
 
 Now we will install the markdown parser:
 
-``` Bash
+```
 $ go get -u -v github.com/russross/blackfriday
 ```
 
@@ -110,7 +110,7 @@ Let's go to your _$GOPATH/src_ dir, and create your directories. _Note: I prefer
 $ cd $GOPATH/src && mkdir -p qml-md/assets && cd qml-md && touch main.go assets/main.qml
 ```
 
-This will create all the needed `dir` tree and needed files
+This will create all the needed dir tree and needed files
 
 Finally we can open up your favorite text editor and write some code!
 
@@ -134,7 +134,7 @@ import (
 func main() {}
 ```
 
-Here you can see we've imported the 3 3rd party libs, the `os`, and the `fmt` libs from the _std_.
+Here you can see we've imported the 3 3rd party libs, the _os_, and the _fmt_ libs from the _std_.
 
 Now we will get the QML file to load in the go app
 
@@ -167,7 +167,7 @@ func main() {
 }
 ```
 
-Here we create a run function that returns an error.  Inside the run `func` we create a QML engine, and Listen for a `"quit"` signal to gracefully quit.<br /> Load the QML file.  And finally create, open, and hold the QML window open.
+Here we create a run function that returns an error.  Inside the run func we create a QML engine, and Listen for a "quit" signal to gracefully quit.<br /> Load the QML file.  And finally create, open, and hold the QML window open.
 
 In the main function we Run the run function to initiate the QML window.
 
@@ -208,15 +208,15 @@ ApplicationWindow { //The base entity so we can set a toolbar later and the layo
 }
 ```
 
-As you can see QML is a simple markup language that makes it very fast and easy to write UIs.  We create an `ApplicationWindow` as our base entity, and a `RowLayout` to organize its children.  2 `TextArea`s, one for Markdown, and another for the `RichText/HTML`.  _The reason I say `RichText/HTML` will be apparent later when we we make it so you can see it a formatted text or raw html._
+As you can see QML is a simple markup language that makes it very fast and easy to write UIs.  We create an ApplicationWindow as our base entity, and a RowLayout to organize its children.  2 TextAreas, one for Markdown, and another for the RichText/HTML.  _The reason I say RichText/HTML will be apparent later when we we make it so you can see it a formatted text or raw html._
 
-In the comments above I say "Suggest".  I say this because when using `Layout.param`, this says that the child of the layout should follow this command as log as it does not cause the `ParentLayout` to break its defined parameters.
+In the comments above I say "Suggest".  I say this because when using _Layout.param_, this says that the child of the layout should follow this command as log as it does not cause the ParentLayout to break its defined parameters.
 
-Now we need to set a parameter in the QML and in Go to set the text in each `TextArea`.  Fist we will remove the static text in `mdarea.text`, and `rtarea.text` with a variable names to reference in to Golang code.  When I say something like `mdarea.text` I mean:
-
-    - We set the `TextArea id` in the Markdown text area as `mdarea`
+Now we need to set a parameter in the QML and in Go to set the text in each TextArea.  Fist we will remove the static text in mdarea.text, and rtarea.text with a variable names to reference in to Golang code.  When I say something like mdarea.text I mean:
+    
+    - We set the TextArea id in the Markdown text area as mdarea
     - And I use dot syntax to reference the text parameter
-
+    
 ``` JavaScript
 //assets/main.qml
 ...
@@ -254,24 +254,24 @@ func run() error {
 		return err
 	}
     //Above code we have already written I just wanted to give you a point of reference
-
+    
     ctx = *engine.Context() //set the context with a pointer so the data stored stays persistent for the life of the variable. In this case the lifetime of the application
     ctx.SetVar("mdtxt", "Markdown Editor") //Set the "mdtxt" property inside the QML file to the provided string
     ctx.SetVar("rttxt", "Rich Text / HTML Editor")
-
+    
     ...
 }
 ...
 
 ```
 
-The above Go code will now set the `mdtxt` and `rttxt` properties in the QML UI when the app loads.  Now we need to have a mechanism to parse and sync the markdown text area with the rich text text area.  We will do this in a couple steps.
+The above Go code will now set the _mdtxt_ and _rttxt_ properties in the QML UI when the app loads.  Now we need to have a mechanism to parse and sync the markdown text area with the rich text text area.  We will do this in a couple steps.
 
  - First we will create a custom type from the Go code to import in to the QML
- - Then we will use a keyboard event in the `mdarea` entity to listen for a change in the text
- - When the text changes in the `mdarea` it will then send the `mdarea.text` contents to the Go code to then parse the markdown and set the text in the rendered HTML in the `rtarea.text` as RichText
+ - Then we will use a keyboard event in the _mdarea_ entity to listen for a change in the text
+ - When the text changes in the _mdarea_ it will then send the _mdarea.text_ contents to the Go code to then parse the markdown and set the text in the rendered HTML in the _rtarea.text_ as RichText
 
-First we create a global `struct HTMLText` (_note: the fist letter is uppercase so the `struct` us exportable_), that takes a `qml.Object`, and a string
+First we create a global struct _HTMLText_ (_note: the fist letter is uppercase so the struct us exportable_), that takes a qml.Object, and a string
 
 ``` Go
 //main.go
@@ -304,7 +304,7 @@ func (h *HTMLText) SetHTMLText(txt string) {
 }
 ```
 
-Now we need a way to create the `HTMLText` object in the QML file, for this we need to register types in QML from the Go code before the engine is initiated.
+Now we need a way to create the HTMLText object in the QML file, for this we need to register types in QML from the Go code before the engine is initiated. 
 
 ``` Go
 //main.go
@@ -318,7 +318,7 @@ func run() error {
             h.Text = "Rich Text" //Sets default value... Could be anything
         },
     }})
-
+    
     ...
 }
 
@@ -341,25 +341,25 @@ import TextConverter 1.0 //The import name is the string from the first param in
 ApplicationWindow {
     ...
     color: "#f1f1f1" // Old code for point of reference
-
+    
     HTMLText { //Note the entity is the same name as the struct we created
         id: htmlText //Unique identifier
         text: "" //We create this to initialize the text param
         //Also note the lowercase text param I will explain below
     }
-
+    
     ...
-
+    
         TextArea {
             id: mdarea
             ...
-
+            
             Keys.onReleased: { //While the mdarea is in focus and once you release after a key press we will call this function
                 htmlText.setHTMLText(mdarea.text) //Here we run the method called in our Go code that will set the HTMLText.Text
-                rtarea.text = htmlText.text //Here we call the htmlText by its Id and set rtarea's text param as the formatted text
+                rtarea.text = htmlText.text //Here we call the htmlText by its Id and set rtarea's text param as the formatted text 
             }
         }
-
+        
         ...
 }
 
@@ -368,10 +368,10 @@ ApplicationWindow {
 
 The GoDoc for Go-QML explains the lower casing: [Lowercasing_of_names](https://godoc.org/gopkg.in/qml.v1#hdr-Lowercasing_of_names)
 
-In the above code you will see that I used [_Keys.onReleased_][rlsd], at first I did `onPressed` but that sends the signal before the new character is added so `rtarea` was always one character behind.
+In the above code you will see that I used [_Keys.onReleased_][rlsd], at first I did _onPressed_ but that sends the signal before the new character is added so _rtarea was always one character behind.
 
 
-Now the app will auto sync and parse the markdown you write in `mdarea` and format it to look nice in the `rtarea`.  But what if we wanted to see the HTML code.  Well what we will do next is make it so if we click into the `rtarea` it will automatically show the raw HTML.
+Now the app will auto sync and parse the markdown you write in _mdarea_ and format it to look nice in the _rtarea_.  But what if we wanted to see the HTML code.  Well what we will do next is make it so if we click into the _rtarea_ it will automatically show the raw HTML.
 
 
 ``` JavaScript
@@ -382,22 +382,22 @@ Now the app will auto sync and parse the markdown you write in `mdarea` and form
     TextArea {
         id: rtarea
         ...
-
+        
         onActiveFocusChange: { //Signal if you leave or enter the focus of rtarea
             if(!activeFocus) { //if you are not in the TextArea
                 rtarea.textFormat = TextEdit.RichText //change the rtarea.textFormat to show the RichText, default
-            } else { //if you are focused on the rtarea
+            } else { //if you are focused on the rtarea 
                 rtarea.textFormat = TextEdit.PlainText //switch the textFormat to PlainText
                 htmlText.setHTMLText(mdarea.text) //now we grab the mdarea.text and parse the markdown
                 rtarea.text = htmlText.text //and set the newly parsed text to the rtarea.text
             }
         }
     }
-
+    
 ...
 ```
 
-You may ask why I took the extra 2 steps at the end of the else statement.  Well in QML once you set the `TextArea` to show `RichText`, QML adds the `html`, `header`, and _body_ tags.  As well as it adds the font styling info as CSS which we do not want if we just want simple markdown HTML.  So once we set the `TextArea` to `PlainText` it will only show exactly what it is sent.
+You may ask why I took the extra 2 steps at the end of the else statement.  Well in QML once you set the _TextArea_ to show _RichText_, QML adds the _html_, _header_, and _body_ tags.  As well as it adds the font styling info as CSS which we do not want if we just want simple markdown HTML.  So once we set the _TextArea_ to _PlainText_ it will only show exactly what it is sent.
 
 Now the final step will be to add a _Copy To HTML_ button, to easily extract the raw HTML. And paste it wherever.
 
@@ -408,21 +408,21 @@ Now the final step will be to add a _Copy To HTML_ button, to easily extract the
 
 ApplicationWindow {
     ...
-
+    
     toolBar: ToolBar { //Create a toolbar and set it as the ApplicationWindow's toolBar
     //This will create the space and auto adjust the other children of ApplicationWindow down
         RowLayout { //This formats the toolbar to move the buttons side by side
             width: parent.width
             height: prent.height
-
+            
             Button {
                 Layout.alignment: Qt.AlignRight //This tells QML that the button needs to be auto formatted to align right
                 text: "Copy To HTML"
-
+                
                 onClicked: htmlText.copyToClip(mdarea.text) //We will create this method in the next part
         }
     }
-
+    
     ...
 }
 ```
@@ -446,7 +446,7 @@ func (h *HTMLText) CopyToClip(txt string) { //A method of the HTMLText pointer t
 ...
 ```
 
-and that's it! While there are a lot of other things you can do with this, like sanitizing the markdown.  But now you can experiment with stuff like saving an HTML file and so forth.
+and that's it! While there are a lot of other things you can do with this, like sanitizing the markdown.  But now you can expiriment with stuff like saving an HTML file and so forth.
 
 Good Luck!
 

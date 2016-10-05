@@ -226,11 +226,11 @@ ga('send', 'pageview');
 
                 
                     <li>
-                        <a href="http://dtoebe.com/post/generating-datauri-images-with-go/"><p>Generating Data URI Images with GoLang</p></a>
+                        <a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/"><p>Embed Other Binaries in Golang Binary</p></a>
                     </li>
                 
                     <li>
-                        <a href="http://dtoebe.com/post/simple_markdown_editor_in_go-qml/"><p>Write a simple Markdown editor with Go-QML</p></a>
+                        <a href="http://dtoebe.com/post/generating-datauri-images-with-go/"><p>Generating DataURI Images with Go</p></a>
                     </li>
                 
             </ul>
@@ -252,8 +252,75 @@ ga('send', 'pageview');
     <header>
     <div class="title">
         
-            <h2><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating Data URI Images with GoLang</a></h2>
+            <h2><a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/">Embed Other Binaries in Golang Binary</a></h2>
         
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2016-10-04'>
+            October 4, 2016</time>
+        <span class="author">Daniel Toebe</span>
+        
+            <p>6 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+
+    <p>Background This just started as a thought&hellip; What if I could compile an existing executable binary into a golang binary. So in my mind I toyed with the idea, and so far the best route I could find (after 10min of thinking), was convert the binary to a byte array. Now this seems very inefficient, and it is, but still fun and kind of cool. Warning With this tutorial we will be using a simple small binary, but when I first thought of the idea I tried it with a NodeJS binary.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+
+                    
+                        Category
+                    
+                
+            </li>
+        
+    
+
+    
+    
+        <li><a href='/categoriesgolang'>golang</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating DataURI Images with Go</a></h2>
+        
+        
+            <p>Create DataURI strings in memory with go</p>
         
     </div>
     <div class="meta">
@@ -274,7 +341,7 @@ ga('send', 'pageview');
 
     
 
-    <p>Background: This post came from one of the challenges set by my local GoLang user group. Problem 2: Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit. A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically.</p>
+    <p>BACKGROUND: This post came from one of the challenges set by my local GoLang user group. Problem 2: Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit. A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically.</p>
 
     <footer>
         <ul class="actions">
@@ -380,71 +447,6 @@ ga('send', 'pageview');
 </article>
 
         
-            <article class="post">
-    <header>
-    <div class="title">
-        
-            <h2><a href="http://dtoebe.com/post/convert_vmdk_to_qcow2/">Convert VMDK to qcow2</a></h2>
-        
-        
-    </div>
-    <div class="meta">
-        
-            
-        
-
-        <time class="published"
-            datetime='2016-05-15'>
-            May 15, 2016</time>
-        <span class="author"></span>
-        
-            <p>5 minute read</p>
-        
-        
-    </div>
-</header>
-
-    
-
-    <p>This is my fist post on this blog, so I decided to do something simple. Years ago when I switched to using Linux, I started using VirtualBox to test othe Linux distros, and to run Window. Some Background VirtualBox is great and easy to use, but the preformance on lower powered machines is not so great. Granted you are running an operating system on top of another operating system (especially a GUI OS) is resource intensive as it is.</p>
-
-    <footer>
-        <ul class="actions">
-            <li><a href="http://dtoebe.com/post/convert_vmdk_to_qcow2/" class="button big">Continue Reading</a></li>
-        </ul>
-        <ul class="stats">
-    
-        
-
-        
-        
-            <li>
-                
-                
-                    
-
-                    
-
-                    
-
-                    
-                        Category
-                    
-                
-            </li>
-        
-    
-
-    
-    
-        <li><a href='/categoriesqemu'>qemu</a></li>
-    
-</ul>
-
-    </footer>
-</article>
-
-        
 
         
 <ul class="actions pagination">
@@ -453,7 +455,8 @@ ga('send', 'pageview');
     
 
     
-        <li><a href="#" class="disabled button big next">Next Page</a></li>
+        <li><a href="/tags/virtualbox/page/2/"
+                class="button big next">Next Page</a></li>
     
 </ul>
 
@@ -486,7 +489,6 @@ ga('send', 'pageview');
 
 
 
-<li><a href="//bitbucket.com/dtoebe" target="_blank" title="Bitbucket" class="fa fa-bitbucket"></a></li>
 
 
 
@@ -520,13 +522,8 @@ ga('send', 'pageview');
 
 
 
-<li><a href="//linkedin.com/in/daniel-toebe-b1533327" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
 
 
-
-
-
-<li><a href="//stackoverflow.com/users/1371285/daniel-toebe" target="_blank" title="Stack Overflow" class="fa fa-stack-overflow"></a></li>
 
 
 
@@ -545,8 +542,6 @@ ga('send', 'pageview');
 <li><a href="//twitter.com/dtoebe" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
 
 
-
-<li><a href="mailto:dtoebe@gmail.com" title="Email" class="fa fa-envelope"></a></li>
 
 
                 
@@ -571,13 +566,13 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <h3><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating Data URI Images with GoLang</a></h3>
+                                <h3><a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/">Embed Other Binaries in Golang Binary</a></h3>
                                 
                                     
                                 
                                 <time class="published" datetime=
-                                    '2016-09-21'>
-                                    September 21, 2016</time>
+                                    '2016-10-04'>
+                                    October 4, 2016</time>
                             </header>
                         </article>
                     </li>
@@ -585,13 +580,13 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <h3><a href="http://dtoebe.com/post/simple_markdown_editor_in_go-qml/">Write a simple Markdown editor with Go-QML</a></h3>
+                                <h3><a href="http://dtoebe.com/post/generating-datauri-images-with-go/">Generating DataURI Images with Go</a></h3>
                                 
                                     
                                 
                                 <time class="published" datetime=
-                                    '2016-05-16'>
-                                    May 16, 2016</time>
+                                    '2016-09-21'>
+                                    September 21, 2016</time>
                             </header>
                         </article>
                     </li>
@@ -630,7 +625,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/golang/">golang</a>
-                                <span style="float:right;">2</span>
+                                <span style="float:right;">3</span>
                             </header>
                         </article>
                     </li>
@@ -659,10 +654,7 @@ ga('send', 'pageview');
 
     
         
-        <section id="twitter-feed">
-            <a class="twitter-timeline" data-height="600" href="https://twitter.com/dtoebe">Tweets by dtoebe</a> 
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </section>
+
     
         <section id="footer">
             <ul class="icons">
@@ -676,7 +668,6 @@ ga('send', 'pageview');
 
 
 
-<li><a href="//bitbucket.com/dtoebe" target="_blank" title="Bitbucket" class="fa fa-bitbucket"></a></li>
 
 
 
@@ -710,13 +701,8 @@ ga('send', 'pageview');
 
 
 
-<li><a href="//linkedin.com/in/daniel-toebe-b1533327" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
 
 
-
-
-
-<li><a href="//stackoverflow.com/users/1371285/daniel-toebe" target="_blank" title="Stack Overflow" class="fa fa-stack-overflow"></a></li>
 
 
 
@@ -735,8 +721,6 @@ ga('send', 'pageview');
 <li><a href="//twitter.com/dtoebe" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
 
 
-
-<li><a href="mailto:dtoebe@gmail.com" title="Email" class="fa fa-envelope"></a></li>
 
 
                 

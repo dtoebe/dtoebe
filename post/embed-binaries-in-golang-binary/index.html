@@ -4,7 +4,7 @@
     <head>
         
             
-                <title>dtoebe.com</title>
+                <title>Embed Other Binaries in Golang Binary</title>
             
         
 
@@ -15,6 +15,8 @@
 
 
         
+            <meta name="author" content="Daniel Toebe">
+        
         
             
                 <meta name="description" content="Just the ramblings of a passionate programmer and Linux lover">
@@ -22,13 +24,24 @@
         
 
         
-        <meta property="og:title" content="dtoebe.com" />
-<meta property="og:description" content="Just the ramblings of a passionate programmer and Linux lover" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://dtoebe.com/" />
+
+  <meta name="twitter:card" content="summary"/>
 
 
-<meta property="og:updated_time" content="2016-10-04T19:53:08-07:00"/>
+
+<meta name="twitter:title" content="Embed Other Binaries in Golang Binary"/>
+<meta name="twitter:description" content="Background This just started as a thought&hellip; What if I could compile an existing executable binary into a golang binary. So in my mind I toyed with the idea, and so far the best route I could find (after 10min of thinking), was convert the binary to a byte array. Now this seems very inefficient, and it is, but still fun and kind of cool. Warning With this tutorial we will be using a simple small binary, but when I first thought of the idea I tried it with a NodeJS binary."/>
+<meta name="twitter:site" content="@dtoebe"/>
+
+
+        <meta property="og:title" content="Embed Other Binaries in Golang Binary" />
+<meta property="og:description" content="Background This just started as a thought&hellip; What if I could compile an existing executable binary into a golang binary. So in my mind I toyed with the idea, and so far the best route I could find (after 10min of thinking), was convert the binary to a byte array. Now this seems very inefficient, and it is, but still fun and kind of cool. Warning With this tutorial we will be using a simple small binary, but when I first thought of the idea I tried it with a NodeJS binary." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://dtoebe.com/post/embed-binaries-in-golang-binary/" />
+
+
+<meta property="og:updated_time" content="2016-10-04T19:20:43-07:00"/>
+
 
 
 
@@ -39,9 +52,16 @@
 
 
         
-<meta itemprop="name" content="dtoebe.com">
-<meta itemprop="description" content="Just the ramblings of a passionate programmer and Linux lover">
+<meta itemprop="name" content="Embed Other Binaries in Golang Binary">
+<meta itemprop="description" content="Background This just started as a thought&hellip; What if I could compile an existing executable binary into a golang binary. So in my mind I toyed with the idea, and so far the best route I could find (after 10min of thinking), was convert the binary to a byte array. Now this seems very inefficient, and it is, but still fun and kind of cool. Warning With this tutorial we will be using a simple small binary, but when I first thought of the idea I tried it with a NodeJS binary.">
 
+
+<meta itemprop="dateModified" content="2016-10-04T19:20:43-07:00" />
+<meta itemprop="wordCount" content="1126">
+
+
+
+<meta itemprop="keywords" content="golang,qemu,qml,go,go-qml,golang,kvm,qcow2,qemu,qml,virtualbox,vmdk," />
 
         
 
@@ -88,7 +108,7 @@ ga('send', 'pageview');
     
 <header id="header">
     
-        <h1><a href="/">dtoebe.com</i></a></h1>
+        <h2><a href="/">dtoebe.com</i></a></h2>
     
 
     <nav class="links">
@@ -239,14 +259,70 @@ ga('send', 'pageview');
         
 </section>
 
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f&text=Embed%20Other%20Binaries%20in%20Golang%20Binary&via=dtoebe" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f&title=Embed%20Other%20Binaries%20in%20Golang%20Binary" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f&title=Embed%20Other%20Binaries%20in%20Golang%20Binary" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f&title=Embed%20Other%20Binaries%20in%20Golang%20Binary" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by Daniel%20Toebe&body=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
     
     <div id="main">
         
-            <article class="post">
+        
+        <article class="post">
     <header>
     <div class="title">
         
-            <h2><a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/">Embed Other Binaries in Golang Binary</a></h2>
+            <h1><a href="http://dtoebe.com/post/embed-binaries-in-golang-binary/">Embed Other Binaries in Golang Binary</a></h1>
+            
         
         
     </div>
@@ -578,62 +654,6 @@ func main() {
     
 
 
-
-            <section id="share-menu">
-    <section id="social-share-nav">
-        <ul class="links">
-            <header>
-                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
-            </header>
-            
-
-
-<li><a href="//twitter.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f&text=Embed%20Other%20Binaries%20in%20Golang%20Binary&via=dtoebe" target="_blank" class="share-btn twitter">
-    <i class="fa fa-twitter"></i>
-    <p>Twitter</p>
-</a></li>
-
-
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f" target="_blank" class="share-btn google-plus">
-    <i class="fa fa-google-plus"></i>
-    <p>Google+</p>
-</a></li>
-
-
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f" target="_blank" class="share-btn facebook">
-    <i class="fa fa-facebook"></i>
-    <p>Facebook</p>
-</a></li>
-
-
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f&title=Embed%20Other%20Binaries%20in%20Golang%20Binary" target="_blank" class="share-btn reddit">
-    <i class="fa fa-reddit-alien"></i>
-    <p>Reddit</p>
-</a></li>
-
-
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f&title=Embed%20Other%20Binaries%20in%20Golang%20Binary" target="_blank" class="share-btn linkedin">
-    <i class="fa fa-linkedin"></i>
-    <p>LinkedIn</p>
-</a></li>
-
-
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f&title=Embed%20Other%20Binaries%20in%20Golang%20Binary" target="_blank" class="share-btn stumbleupon">
-    <i class="fa fa-stumbleupon"></i>
-    <p>StumbleUpon</p>
-</a></li>
-
-
-<li><a href="mailto:?subject=Check out this post by Daniel%20Toebe&body=http%3a%2f%2fdtoebe.com%2fpost%2fembed-binaries-in-golang-binary%2f" target="_blank" class="share-btn email">
-    <i class="fa fa-envelope"></i>
-    <p>Email</p>
-</a></li>
-
-        </ul>
-    </section>
-</section>
-
-        
     </div>
     
 <section id="sidebar">
@@ -653,9 +673,6 @@ func main() {
                 </header>
             
             <ul class="icons">
-                
-                    <li><a href="http://dtoebe.com/index.xml" type="application/rss+xml"
-                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
                 
                 
                     
@@ -832,9 +849,6 @@ func main() {
     
         <section id="footer">
             <ul class="icons">
-                
-                    <li><a href="http://dtoebe.com/index.xml" type="application/rss+xml"
-                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
                 
                 
                     

@@ -6,20 +6,222 @@
     <description>Recent content in Posts on dtoebe.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Sep 2016 00:27:52 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 04 Oct 2016 19:20:43 -0700</lastBuildDate>
     <atom:link href="http://dtoebe.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Generating Data URI Images with GoLang</title>
+      <title>Embed Other Binaries in Golang Binary</title>
+      <link>http://dtoebe.com/post/embed-binaries-in-golang-binary/</link>
+      <pubDate>Tue, 04 Oct 2016 19:20:43 -0700</pubDate>
+      
+      <guid>http://dtoebe.com/post/embed-binaries-in-golang-binary/</guid>
+      <description>
+
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;This just started as a thought&amp;hellip; What if I could compile an existing executable binary into a golang binary.  So in my mind I toyed with the idea, and so far the best route I could find (after 10min of thinking), was convert the binary to a byte array. Now this seems very inefficient, and it is, but still fun and kind of cool.&lt;/p&gt;
+
+&lt;h2 id=&#34;warning&#34;&gt;Warning&lt;/h2&gt;
+
+&lt;p&gt;With this tutorial we will be using a simple small binary, but when I first thought of the idea I tried it with a NodeJS binary. The NodeJS binary is 28.8 MiB (ver 6.7.0). When I converted the binary to a byte array the generated source file was 126 MiB.  To top that I ran it on my laptop, running 12 GiB of ram and 16 GiB of swap on an SSD. I use so much swap because I may run a couple VMs at a time, and I am generous of memory I give them.&lt;/p&gt;
+
+&lt;p&gt;Now with the NodeJS binary the &lt;code&gt;go build&lt;/code&gt; command I ran took forever, and was eventually killed because I ran out of memory.  Yes that included filling the swap.&lt;/p&gt;
+
+&lt;p&gt;So if you want to try this, just note it may take up a bit of memory.  With the code, and binary we will be using it shouldn&amp;rsquo;t be to rough, but be warned!  Maybe down the road I or someone else will figure out a more efficient method.&lt;/p&gt;
+
+&lt;p&gt;Also note I am on Linux and have not tested on other OS&amp;rsquo;s, so this may not work on OSX, Windows, ect&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;file-structure&#34;&gt;File Structure&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Bash&#34;&gt;./
+├── generators/
+│   └── generator.go
+├── main.go
+└── sample-data/
+    └── main.go
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2 directories, 3 files&lt;/p&gt;
+
+&lt;h2 id=&#34;the-sample-binary&#34;&gt;The Sample Binary&lt;/h2&gt;
+
+&lt;p&gt;With this tutorial we will just create a simple hello world. The code really needs no explanation, and if it does to you, then the rest of the tutorial may be to advanced for you and you should start with a &lt;a href=&#34;https://tour.golang.org/welcome/1&#34;&gt;Tour of Go&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;// ./sample-data/main.go
+
+package main
+
+import &amp;quot;fmt&amp;quot;
+
+func main() {
+	fmt.Println(&amp;quot;Hello from the binary&amp;quot;)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Bash&#34;&gt;$ go build -o ./sample-data/{generated-bin,main.go}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This gives us an executable binary named &lt;code&gt;generated-bin&lt;/code&gt;. This will give us the binary that we will compile into another go binary.  This is just an example and you could use any language to create an executable, just make sure it&amp;rsquo;s not too big.&lt;/p&gt;
+
+&lt;h2 id=&#34;creating-the-generator&#34;&gt;Creating The Generator&lt;/h2&gt;
+
+&lt;p&gt;The generator will be more of a &amp;ldquo;script&amp;rdquo; written in go.  We actually won&amp;rsquo;t create an executable from this, but call it from our main.go source file using the &lt;code&gt;go generate&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;// ./generators/generator.go
+
+
+package main
+
+//Much of this file is from http://stackoverflow.com/questions/17796043/golang-embedding-text-file-into-compiled-executable
+
+import (
+	&amp;quot;fmt&amp;quot;
+	&amp;quot;io/ioutil&amp;quot;
+	&amp;quot;os&amp;quot;
+	&amp;quot;strings&amp;quot;
+)
+
+func main() {
+	//Empty string slice to place the byte lierals in
+	var dataSlice []string
+
+	//This will be the generated go file
+	//Note: the path is ./ because we are using the go generate command
+	// inside the main.go file
+	outfile, err := os.Create(&amp;quot;./generateddata.go&amp;quot;)
+	if err != nil {
+		panic(err.Error())
+	}
+	defer outfile.Close()
+
+	//This is the file we will turn to []bytes
+    //Make sure you use the name you used to build the sample data
+	infile, err := ioutil.ReadFile(&amp;quot;./sample-data/generated-bin&amp;quot;)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	//Write the initial data to the generated go file
+	//package main
+	//var data = []byte{ EOF... so far
+	outfile.Write([]byte(&amp;quot;package main\n\nvar (\n\tdata = []byte{&amp;quot;))
+
+	//Here we loop over each byte in the []byte from the sample
+	//data file.
+	//Take the byte literal and format it as a string
+	//Then append it to the empty []string dataSlice we created at
+	//the top of the func
+	//Depending on the size of infile this could take a bit
+	for _, b := range infile {
+		bString := fmt.Sprintf(&amp;quot;%v&amp;quot;, b)
+		dataSlice = append(dataSlice, bString)
+	}
+
+	//We join the []string together separating it with commas
+	//Remember we are writing a go src file so everything has to be a string
+	dataString := strings.Join(dataSlice, &amp;quot;, &amp;quot;)
+
+	//Write all the data to the generated file
+	outfile.WriteString(dataString)
+
+	//Finish off the data
+	outfile.Write([]byte(&amp;quot;}\n)&amp;quot;))
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nothing too complicated, just takes the executable and converts it to a byte array and then creates a go source file in the root directory, because we are calling it via the &lt;code&gt;go generate&lt;/code&gt; command so it executes this file as if its working directory was the root directory. This will create a source file in the root directory called &lt;code&gt;generateddata.go&lt;/code&gt;.  This has a &lt;code&gt;package main&lt;/code&gt; so it will be compiled with the main build.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-main-application&#34;&gt;The Main Application&lt;/h2&gt;
+
+&lt;p&gt;This is a VERY simple bit of code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;// ./main.go
+
+package main
+
+import &amp;quot;os&amp;quot;
+
+//	When we run `go generate` from the cli it will run the
+//	`go run` command outlined below
+//	**Important: sure to include the comment below for the generator to see**
+//go:generate go run generators/generator.go
+
+//This func takes the name that you want the generated []byte to be as a binary
+func genFile(p string) (int, error) {
+	//Create the binary file
+	file, err := os.Create(p)
+	if err != nil {
+		return 0, err
+	}
+	defer file.Close()
+
+	//Write the data to the the created file
+	return file.Write(data)
+}
+
+func main() {
+	p := &amp;quot;./final-bin&amp;quot;
+	genFile(p)
+	//Finally make the file executable
+	//I know... 777 is bad
+	os.Chmod(p, 0777)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Very Important: make sure to include the &lt;code&gt;go:generate&lt;/code&gt; comment, or this wont work&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;go:generate&lt;/code&gt; comment tells the go generate tool that it need to execute the &lt;code&gt;./generators/generate.go&lt;/code&gt; &amp;ldquo;script&amp;rdquo;.&lt;/p&gt;
+
+&lt;h2 id=&#34;building&#34;&gt;Building&lt;/h2&gt;
+
+&lt;p&gt;Ok assuming that you built the &lt;code&gt;generated-bin&lt;/code&gt; executable, go ahead and run the next few commands.&lt;/p&gt;
+
+&lt;p&gt;First we run the generate command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Bash&#34;&gt;$ go generate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you run &lt;code&gt;ls&lt;/code&gt; you will see the &lt;code&gt;generateddata.go&lt;/code&gt; in the root directory. Now here is another word of warning, don&amp;rsquo;t open this file with most text editors like Atom, and even vim had a hard time (part of the reason is because I use YouCompleteMe).  If you want to inspect the generated file use a very minimal command line tool like &lt;code&gt;less&lt;/code&gt;. The byte array is pretty large.&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s build it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Bash&#34;&gt;$ go build -o main *.go
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now depending on the size of the generated file this command will take some time, and be CPU and memory intensive.  With our example binary it shouldn&amp;rsquo;t be too bad.&lt;/p&gt;
+
+&lt;p&gt;Now with the executable built, we can run it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Bash&#34;&gt;$ ./main
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This creates a new executable in the root directory called &lt;code&gt;final-bin&lt;/code&gt;.  When you run &lt;code&gt;./final-bin&lt;/code&gt; you will see that it outputs the same as the executable created in the sample-data directory.&lt;/p&gt;
+
+&lt;p&gt;An idea like this could be used to embed things like electron binaries, images or anything. While this is a &amp;ldquo;cool&amp;rdquo; idea, it is impractical, until we find a better way to statically save the data.&lt;/p&gt;
+
+&lt;p&gt;Please feel free to comment on how to improve on this idea.&lt;/p&gt;
+
+&lt;p&gt;Link to the github repo: &lt;a href=&#34;https://github.com/dtoebe/embed-binary&#34;&gt;embed-binary&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Generating DataURI Images with Go</title>
       <link>http://dtoebe.com/post/generating-datauri-images-with-go/</link>
-      <pubDate>Wed, 21 Sep 2016 00:27:52 -0700</pubDate>
+      <pubDate>Wed, 21 Sep 2016 19:04:15 -0700</pubDate>
       
       <guid>http://dtoebe.com/post/generating-datauri-images-with-go/</guid>
       <description>
 
-&lt;h3 id=&#34;background&#34;&gt;Background:&lt;/h3&gt;
+&lt;h3 id=&#34;background&#34;&gt;BACKGROUND:&lt;/h3&gt;
 
-&lt;p&gt;This post came from one of the challenges set by my local &lt;a href=&#34;https://www.meetup.com/Golang-Phoenix/events/233826496/&#34;&gt;GoLang user group&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This post came from one of the challenges set by my local GoLang user group.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Problem 2:&lt;/p&gt;
@@ -27,20 +229,20 @@
 &lt;p&gt;Create an API with an endpoint that returns a PNG image containing the numeric representation of the number of times that endpoint has been hit.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images.  Most modern browsers can decode data URIs automatically.&lt;/p&gt;
+&lt;p&gt;A data URI is basically a base64 bit encoded string of characters. You can encode many different types of data including binary data such as images. Most modern browsers can decode data URIs automatically.&lt;/p&gt;
 
 &lt;p&gt;A great post on the basics of data URIs in web development is &lt;a href=&#34;https://css-tricks.com/data-uris/&#34;&gt;CSS-Tricks Data URI&lt;/a&gt;. This is where I first learned about them. Reading that post you will hopefully see the nerd coolness that they are.&lt;/p&gt;
 
 &lt;p&gt;In reality with modern web technologies data URIs are becoming more and more impractical, because in reality they are 20% to 35% larger than their standard counterparts. You could gzip the data and for Go Lang there is a really good package from the New York Times: &lt;a href=&#34;https://github.com/NYTimes/gziphandler&#34;&gt;gziphandler&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;With that excessive size does come with a bonus. With typical HTTP requests for files such ad HTML, or images require an additional request to retrieve that file. That could be &amp;ldquo;OK&amp;rdquo; for mobile, or some sort of restricted device.&lt;/p&gt;
+&lt;p&gt;With that excessive size does come with a bonus. With typical HTTP requests for files such ad HTML, or images require an additional request to retrieve that file. That could be “OK” for mobile, or some sort of restricted device.&lt;/p&gt;
 
 &lt;p&gt;With a data URI, it can be sent over the request body as a simple string. Once the browser receives the string it will see a prefix:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;quot;data:[&amp;lt;mediatype][;base64],data&amp;quot;
+&lt;pre&gt;&lt;code&gt;&amp;quot;data:[mediatype][;base64],data&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;em&gt;Source: &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs&#34;&gt;MDN Data URI&lt;/a&gt;  NOTE: The MDN site is one of the best resources for learning client-side web technologies out there. It is VERY thorough.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Source: &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs&#34;&gt;MDN Data URI&lt;/a&gt;; NOTE: The MDN site is one of the best resources for learning client-side web technologies out there. It is VERY thorough.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;As you can see from the Mozilla Developer Network Article you can encode many types of data for the browser.&lt;/p&gt;
 
@@ -52,18 +254,17 @@
 &lt;li&gt;GIF &lt;code&gt;image/gif&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;And while dealing with &lt;code&gt;text&lt;/code&gt; data types you don&amp;rsquo;t even need to encode it, but &lt;code&gt;binary&lt;/code&gt; types, like images, they will need to be encoded.&lt;/p&gt;
+&lt;p&gt;And while dealing with &lt;code&gt;text&lt;/code&gt; data types you don’t even need to encode it, but &lt;code&gt;binary types&lt;/code&gt;, like images, they will need to be encoded.&lt;/p&gt;
 
-&lt;h3 id=&#34;getting-to-the-code&#34;&gt;Getting to the code&lt;/h3&gt;
+&lt;h3 id=&#34;getting-to-the-code&#34;&gt;GETTING TO THE CODE&lt;/h3&gt;
 
-&lt;p&gt;With this tutorial we will just focus on creating the data URI string to be sent.  At that point you can send it over some sort of API, or embedded in an HTML template. Also we will only use packages from the &lt;code&gt;std&lt;/code&gt; libs.&lt;/p&gt;
+&lt;p&gt;With this tutorial we will just focus on creating the data URI string to be sent. At that point you can send it over some sort of API, or embedded in an HTML template. Also we will only use packages from the &lt;code&gt;std&lt;/code&gt; libs.&lt;/p&gt;
 
-&lt;p&gt;To simplify things I am going to borrow most of the code for generating images from another one of my favorite sources &lt;a href=&#34;https://www.socketloop.com/&#34;&gt;SocketLoop&lt;/a&gt;. SocketLoop always seems to have the answers for any golang question I have.  Specifically we will be using &lt;a href=&#34;https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format&#34;&gt;this blog post&lt;/a&gt;, a great resource on how to create images in golang.&lt;/p&gt;
+&lt;p&gt;To simplify things I am going to borrow most of the code for generating images from another one of my favorite sources &lt;a href=&#34;https://www.socketloop.com/&#34;&gt;SocketLoop&lt;/a&gt;. SocketLoop always seems to have the answers for any golang question I have. Specifically we will be using this &lt;a href=&#34;https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format&#34;&gt;blog post&lt;/a&gt;, a great resource on how to create images in golang.&lt;/p&gt;
 
 &lt;p&gt;Here are the imports&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;
-//main.go
+&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
 package main
 
 import (
@@ -77,12 +278,11 @@ import (
     &amp;quot;bytes&amp;quot;
     &amp;quot;encoding/base64&amp;quot;
 )
-
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You may be asking why the &lt;code&gt;math/rand&lt;/code&gt;, and &lt;code&gt;time&lt;/code&gt; packages. That&amp;rsquo;s because per the &lt;a href=&#34;https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format&#34;&gt;Socket Loop Tutorial&lt;/a&gt; we will be generating a randomly generated simple QR-Code like PNG image.&lt;/p&gt;
+&lt;p&gt;You may be asking why the &lt;code&gt;math/rand&lt;/code&gt;, and &lt;code&gt;time&lt;/code&gt; packages. That’s because per the &lt;a href=&#34;https://www.socketloop.com/tutorials/golang-save-image-to-png-jpeg-or-gif-format&#34;&gt;Socket Loop Tutorial&lt;/a&gt; we will be generating a randomly generated simple QR-Code like PNG image.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;rsquo;s get to the main &lt;code&gt;func&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Let’s get to the main &lt;code&gt;func&lt;/code&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;//main.go
 package main
@@ -106,7 +306,7 @@ func main() {
     // Tt takes the image we created in memory, and then the bounding Rect
     // Next we add a reference to a uniform color (white) over the mask
     // The image.ZP means the mask we are drawing starts at the 0,0 point
-    // draw.Src refrences the source mask
+    // draw.Src reference the source mask
     draw.Draw(img, img.Bounds(), &amp;amp;image.Uniform{color.White}, image.ZP, draw.Src)
 
     // These nested loop reference the y,x coordinates.
@@ -127,7 +327,6 @@ func main() {
         }
     }
 }
-
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Ok well we now have generated the image in memory now lets get to the fun stuff.&lt;/p&gt;
@@ -161,16 +360,15 @@ func main() {
     // browser&#39;s URL bar, and you&#39;ll see your image.
     fmt.Println(&amp;quot;data:image/png;base64,&amp;quot;, base64Img)
 }
-
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAAAAABVicqIAAAAt0lEQVR4nOzYsQqFMAyFYZW+/yvrZh0Opyk4JOHPdLm2fBBIk3YcNu7312n/UztmXB75J0BAQNYhK97XtA+1o0+6QECKI2O/un1nV7NAn3SBgBRHZJmryVxtUevo8SAgiZFPgfo+LbcE1/VJFwhIcWT4fj7Dz/zqjGCqBwFJh8geLz+LddGbf590gYAUR8KP8ft3e6Z6EJB0iHyr9108estnqgcBSYcsenz0PODlDgSkBPIEAAD//007Gs0nXd84AAAAAElFTkSuQmCC&#34; alt=&#34;base64 Image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAAAAABVicqIAAAAt0lEQVR4nOzYsQqFMAyFYZW+/yvrZh0Opyk4JOHPdLm2fBBIk3YcNu7312n/UztmXB75J0BAQNYhK97XtA+1o0+6QECKI2O/un1nV7NAn3SBgBRHZJmryVxtUevo8SAgiZFPgfo+LbcE1/VJFwhIcWT4fj7Dz/zqjGCqBwFJh8geLz+LddGbf590gYAUR8KP8ft3e6Z6EJB0iHyr9108estnqgcBSYcsenz0PODlDgSkBPIEAAD//007Gs0nXd84AAAAAElFTkSuQmCC&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The image above was generated with this tutorial&amp;hellip; Nerd cool right?&lt;/p&gt;
+&lt;p&gt;The image above was generated with this tutorial… Nerd cool right?&lt;/p&gt;
 
 &lt;p&gt;Again without gzipping it typically is larger than its binary counterpart, but does reduce HTTP requests.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Check out the full source code on &lt;a href=&#34;https://github.com/dtoebe/datauri-blog-post&#34;&gt;GitHub&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Check out the full source code on &lt;a href=&#34;https://github.com/dtoebe/datauri-blog-post&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
